@@ -1,0 +1,46 @@
+<header>
+
+    <div class="header-left">
+        <div id="menuBtn" class="menu-btn">☰</div>
+        <div>
+            <%= title %>
+        </div>
+    </div>
+
+    <div class="header-right">
+
+        <div class="header-user">
+
+            <div class="user-dropdown" id="userDropdown">
+
+                <div class="user-trigger" id="userTrigger">
+                    <span id="campusName"></span>
+                    <span class="divider">|</span>
+                    <span id="currentUser"></span>
+                    <span class="arrow">▾</span>
+                </div>
+
+                <div class="user-menu" id="userMenu">
+                    <div class="user-info">
+                        <div id="userFullName"></div>
+                        <div id="userRole" class="role"></div>
+                        <div id="userLink" class="role"></div>
+                    </div>
+
+                    <div class="menu-divider"></div>
+                    <div class="menu-item" id="btnChangePassword" onclick="window.location.href='/tech/changepw'">
+                        Đổi mật khẩu
+                    </div>
+                    <div class="menu-divider"></div>
+                    <div class="menu-item" id="btnLogout">
+                        🚪 Đăng xuất
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>

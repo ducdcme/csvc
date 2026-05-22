@@ -1,0 +1,60 @@
+<div class="content">
+    <div class="page">
+        <h2>Tạo Incident Work</h2>
+
+        <form id="incident-form">
+
+            <div>
+                <label>Title</label><br />
+                <input type="text" id="title" required />
+            </div>
+
+            <div>
+                <label>Description</label><br />
+                <textarea id="description"></textarea>
+            </div>
+
+            <div>
+                <label>Work Type</label><br />
+                <select id="work_type">
+                    <option value="INTERNAL">INTERNAL</option>
+                    <option value="EXTERNAL">EXTERNAL</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Start Date</label><br />
+                <input type="date" id="start_date" required />
+            </div>
+            <div>
+                <label>Due Date</label><br />
+                <input type="date" id="due_date" required />
+            </div>
+            <br />
+
+            <button type="submit">Create</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+</div>
+<style>
+    .page {
+        padding: 16px;
+        font-family: Arial;
+    }
+
+    input,
+    textarea,
+    select {
+        width: 300px;
+        padding: 6px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 8px 16px;
+    }
+</style>
+
+<script src="/js/portals/manager/incident-work/form.js"></script>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%= title || 'Portal' %>
+    </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/portal.css">
+
+    <!-- Google Icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#2563eb">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+
+    <script src="/js/common/utils.js"></script>
+    <script src="/js/common/permission.js"></script>
+</head>
+
+<body>
+
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+        <%- include('../partials/sidebar') %>
+
+            <!-- MAIN -->
+            <div class="main">
+
+                <!-- HEADER -->
+                <%- include('../partials/header', { title }) %>
+
+                    <!-- CONTENT (CHỈ 1 LẦN) -->
+                    <main>
+                        <%- body %>
+                    </main>
+                    <div id="toast" class="toast"></div>
+                    <!-- FOOTER -->
+                    <%- include('../partials/footer') %>
+
+            </div>
+
+    </div>
+
+    <!-- OVERLAY (mobile) -->
+    <div id="overlay"></div>
+
+    <!-- COMMON JS -->
+    <script src="/js/common/layout.js"></script>
+    <script src="/js/common/theme.js"></script>
+    <script src="/js/common/header.js"></script>
+    <script src="/js/common/normalizer.js"></script>
+    <script src="/js/common/api.js"></script>
+    <script src="/pwa.js"></script>
+    <script src="/js/portals/tech/menu.js"></script>
+    <!-- PORTAL ROOT JS -->
+    <script src="/js/portals/tech/tech.js"></script>
+
+</body>
+
+</html>

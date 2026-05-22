@@ -1,0 +1,265 @@
+<div class="content">
+
+    <div class="container dashboard-container">
+
+        <div id="summarySection"></div>
+
+        <div id="overdueSection"></div>
+
+        <div id="pendingSection"></div>
+
+        <div id="doneSection"></div>
+
+    </div>
+    <div class="float-button">
+        <a href="/tech/periodic-work/monthly" class="btn-action">📋 Checklist tháng</a>
+    </div>
+</div>
+
+<script src="/js/portals/tech/periodic/dashboard.js"></script>
+
+
+<style>
+    .dashboard-container {
+        padding: 12px;
+        max-width: 480px;
+        margin: auto;
+        font-family: system-ui;
+    }
+
+    /* HEADER */
+    .dashboard-header {
+        margin-bottom: 16px;
+    }
+
+    .header-title {
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .header-sub {
+        font-size: 13px;
+        color: #777;
+    }
+
+    .header-stats {
+        margin-top: 6px;
+    }
+
+    .badge {
+        padding: 4px 8px;
+        border-radius: 8px;
+        font-size: 12px;
+    }
+
+    .badge.overdue {
+        background: #ffe5e5;
+        color: #d00;
+    }
+
+    .badge.pending {
+        background: #fff4cc;
+        color: #b8860b;
+    }
+
+    /* SECTION */
+    .section-title {
+        font-weight: 600;
+        margin: 16px 0 8px;
+    }
+
+    .section-title.danger {
+        color: #d00;
+    }
+
+    .section-title.muted {
+        color: #888;
+    }
+
+    /* CARD */
+    .task-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .task-card.overdue {
+        border-left: 4px solid #d00;
+    }
+
+    .task-title {
+        font-weight: 600;
+    }
+
+    .task-meta {
+        font-size: 12px;
+        color: #666;
+    }
+
+    .task-status {
+        font-size: 13px;
+        margin: 4px 0;
+    }
+
+    .task-status.danger {
+        color: #d00;
+    }
+
+    /* BUTTON */
+    .btn {
+        border: none;
+        padding: 10px;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+    .btn.primary {
+        background: #007bff;
+        color: white;
+    }
+
+    .btn.danger {
+        background: #d00;
+    }
+
+    /* PROGRESS */
+    .progress-wrapper {
+        margin: 8px 0;
+    }
+
+    .progress-bar {
+        height: 6px;
+        background: #eee;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: #007bff;
+    }
+
+    .progress-text {
+        font-size: 11px;
+        text-align: right;
+        color: #666;
+    }
+
+    /* DONE */
+    .done-item {
+        font-size: 13px;
+        color: #777;
+        margin-bottom: 4px;
+    }
+
+    /* =========================
+   DESKTOP (>= 768px)
+========================= */
+    @media (min-width: 768px) {
+
+        .dashboard-container {
+            max-width: 1100px;
+            padding: 20px;
+        }
+
+        /* HEADER */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 22px;
+        }
+
+        .header-sub {
+            font-size: 14px;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* SECTION LAYOUT */
+        #overdueSection,
+        #pendingSection {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        /* Section title full width */
+        .section-title {
+            grid-column: 1 / -1;
+            font-size: 16px;
+        }
+
+        /* CARD */
+        .task-card {
+            padding: 16px;
+            border-radius: 14px;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .task-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .task-title {
+            font-size: 15px;
+        }
+
+        .task-meta {
+            font-size: 12px;
+        }
+
+        .task-status {
+            font-size: 13px;
+        }
+
+        /* BUTTON */
+        .btn {
+            padding: 10px 12px;
+            font-size: 14px;
+        }
+
+        /* PROGRESS */
+        .progress-bar {
+            height: 8px;
+        }
+
+        .progress-text {
+            font-size: 12px;
+        }
+
+        /* DONE */
+        #doneSection {
+            margin-top: 24px;
+        }
+
+        .done-item {
+            font-size: 14px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+
+        #overdueSection,
+        #pendingSection {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .dashboard-header {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            z-index: 10;
+            padding-bottom: 8px;
+        }
+    }
+</style>

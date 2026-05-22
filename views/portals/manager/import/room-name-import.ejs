@@ -1,0 +1,31 @@
+<div class="content">
+
+    <h4>Import Room Name (Theo năm học)</h4>
+
+    <!-- UPLOAD -->
+    <div class="mb-2">
+        <input type="file" id="fileInput" class="form-control" />
+    </div>
+
+    <!-- ACTION -->
+    <div class="mb-3">
+        <button class="btn btn-primary btn-sm" onclick="preview()">
+            Preview
+        </button>
+
+        <button class="btn btn-success btn-sm" onclick="doImport()">
+            Import
+        </button>
+
+        <button class="btn btn-secondary btn-sm" onclick="downloadTemplate()">
+            Download Template
+        </button>
+    </div>
+
+    <!-- PREVIEW -->
+    <div id="previewSection"></div>
+
+</div>
+
+<script src="/js/portals/manager/import/room-name-import.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>

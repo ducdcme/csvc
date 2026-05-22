@@ -1,0 +1,108 @@
+<div class="content">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+
+        <div>
+            <h1 class="page-title">
+                Periodic Jobs
+            </h1>
+
+            <p class="page-subtitle">
+                Monitor generated periodic jobs
+            </p>
+        </div>
+
+    </div>
+
+
+
+    <!-- FILTER -->
+    <div class="card filter-card">
+
+        <div class="filter-grid">
+
+            <div class="form-group">
+                <label>
+                    Month
+                </label>
+
+                <input type="month" id="filter-month">
+            </div>
+
+
+            <div class="form-group">
+                <label>
+                    Type
+                </label>
+
+                <select id="filter-type-id">
+                    <option value="">
+                        All Types
+                    </option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label>
+                    Status
+                </label>
+
+                <select id="filter-status">
+                    <option value="">
+                        All Status
+                    </option>
+
+                    <option value="pending">
+                        Pending
+                    </option>
+
+                    <option value="done">
+                        Done
+                    </option>
+
+                    <option value="skipped">
+                        Skipped
+                    </option>
+                </select>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TABLE -->
+    <div class="card">
+
+        <div class="table-wrapper">
+
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Job</th>
+                        <th>Type</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Progress</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="job-table-body">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/js/portals/manager/periodic-work/jobs.js"></script>

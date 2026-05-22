@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolCare Pro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #3272b3;
+            --accent-green: #a3d162;
+            --header-bg: #ffffff;
+            --body-bg: #f0f2f5;
+            --text-color: #1c1e21;
+            --search-bg: #f0f2f5;
+        }
+
+        /* XỬ LÝ DARK MODE CỦA THIẾT BỊ */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --header-bg: #242526;
+                --body-bg: #18191a;
+                --text-color: #e4e6eb;
+                --search-bg: #3a3b3c;
+            }
+
+            /* Giấu hoàn toàn logo ở Dark Mode */
+            .logo-area {
+                display: none !important;
+            }
+
+            /* Hiện thanh tìm kiếm hoặc tiêu đề thay thế */
+            .dark-replacement {
+                display: flex !important;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--body-bg);
+            color: var(--text-color);
+        }
+
+        /* HEADER */
+        header {
+            background: var(--header-bg);
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Khu vực Logo (Chỉ hiện ở Light Mode) */
+        .logo-area {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .logo-area img {
+            height: 28px;
+            width: auto;
+        }
+
+        /* Khu vực thay thế cho Dark Mode (Mặc định ẩn) */
+        .dark-replacement {
+            display: none;
+            flex-grow: 1;
+            align-items: center;
+            background: var(--search-bg);
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: #b0b3b8;
+        }
+
+        .dark-replacement i {
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .dark-replacement span {
+            font-size: 14px;
+        }
+
+        /* Icon bên phải */
+        .header-right {
+            display: flex;
+            gap: 12px;
+            margin-left: auto;
+            /* Đẩy cụm icon sang phải */
+        }
+
+        .icon-btn {
+            width: 38px;
+            height: 38px;
+            background: var(--search-bg);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .dot {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 8px;
+            height: 8px;
+            background: #fa3e3e;
+            border-radius: 50%;
+            border: 2px solid var(--header-bg);
+        }
+
+        /* BODY CONTENT */
+        .main-container {
+            padding: 15px;
+        }
+
+        .card {
+            background: var(--header-bg);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* BOTTOM MENU */
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: var(--header-bg);
+            display: flex;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        .menu-item {
+            flex: 1;
+            text-align: center;
+            padding: 10px 0;
+            color: #888;
+            text-decoration: none;
+            font-size: 10px;
+        }
+
+        .menu-item.active {
+            color: var(--primary-blue);
+        }
+
+        .menu-item i {
+            font-size: 20px;
+            display: block;
+            margin-bottom: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo-area">
+            <img src="LogoSchooCare2.png" alt="SchoolCare">
+        </div>
+
+        <div class="dark-replacement">
+            <i class="fas fa-search"></i>
+            <span>Tìm kiếm dữ liệu...</span>
+        </div>
+
+        <div class="header-right">
+            <a href="#" class="icon-btn">
+                <i class="fas fa-bell"></i>
+                <span class="dot"></span>
+            </a>
+            <a href="#" class="icon-btn">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="card">
+            <h4 style="color: var(--primary-blue)">Trạng thái hôm nay</h4>
+            <p style="font-size: 14px; margin-top: 8px; opacity: 0.8;">Mọi thứ đang hoạt động ổn định.</p>
+        </div>
+    </div>
+
+    <nav class="bottom-menu">
+        <a href="#" class="menu-item active">
+            <i class="fas fa-home"></i>
+            Trang chủ
+        </a>
+        <a href="#" class="menu-item">
+            <i class="fas fa-chart-line"></i>
+            Báo cáo
+        </a>
+        <a href="#" class="menu-item">
+            <i class="fas fa-history"></i>
+            Lịch sử
+        </a>
+        <a href="#" class="menu-item">
+            <i class="fas fa-user-shield"></i>
+            Hệ thống
+        </a>
+    </nav>
+
+</body>
+
+</html>

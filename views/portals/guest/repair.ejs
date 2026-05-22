@@ -1,0 +1,65 @@
+<div class="container">
+
+    <div class="title">Báo hỏng cơ sở vật chất</div>
+
+    <div class="subtitle">
+        Gửi thông tin sự cố tới bộ phận kỹ thuật
+    </div>
+
+    <div id="breadcrumb" class="stepbar">
+        📍 Chọn tòa nhà
+    </div>
+    <div class="card">
+
+        <h3>🔍 Tìm nhanh phòng</h3>
+
+        <input id="searchRoom" class="search" placeholder="Nhập tên phòng...">
+
+        <div id="searchResult"></div>
+
+    </div>
+    <!-- STEP LIST (DUY NHẤT) -->
+    <div id="stepListContainer" class="card">
+        <h3 id="stepTitle">Chọn theo tòa nhà</h3>
+        <div class="chips" id="stepList"></div>
+    </div>
+
+    <!-- FORM -->
+    <div class="card" id="formSection" style="display:none">
+
+        <h3>Mô tả sự cố hoặc <a href="javascript:backToRoom()"><button class="change-room">← Chọn lại</button></a></h3>
+
+        <div id="selectedInfo" style="margin-bottom:8px;color:#64748b"></div>
+        <div style="margin-bottom: 10px;">
+            <label for="quantity">Số lượng</label>
+            <input class="input" type="number" id="quantity" value="1" min="1" onfocus="this.value=''">
+        </div>
+        <textarea id="desc" placeholder="Mô tả chi tiết sự cố..."></textarea>
+        <div class="upload-box" onclick="triggerUpload('fileInput')">
+            + Thêm ảnh
+        </div>
+        <input type="file" id="fileInput" multiple hidden>
+
+        <div id="preview"></div>
+
+        <button id="submitBtn" class="submit">
+            Gửi báo hỏng
+        </button>
+
+        <div id="errorBox"></div>
+        <div id="successBox"></div>
+
+    </div>
+    <div id="recentSection" class="card">
+
+        <h3>🛠 Sửa chữa gần đây</h3>
+
+        <div id="recentList"> </div>
+
+    </div>
+    <div id="previewModal" class="preview-modal">
+        <img id="previewModalImg" />
+    </div>
+</div>
+
+<% script='<script src="/js/portals/guest/repair.js"></script>' %>

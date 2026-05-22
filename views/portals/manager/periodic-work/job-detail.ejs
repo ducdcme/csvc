@@ -1,0 +1,278 @@
+<div class="content">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+
+        <div>
+            <h1 class="page-title">
+                Periodic Job Detail
+            </h1>
+
+            <p class="page-subtitle">
+                Runtime monitoring
+            </p>
+        </div>
+
+    </div>
+
+
+
+    <!-- SUMMARY -->
+    <div class="card">
+
+        <div class="detail-grid">
+
+            <div class="detail-item">
+                <label>Title</label>
+                <div id="job-title">-</div>
+            </div>
+
+            <div class="detail-item">
+                <label>Type</label>
+                <div id="job-type">-</div>
+            </div>
+
+            <div class="detail-item">
+                <label>Status</label>
+                <div id="job-status">-</div>
+            </div>
+
+            <div class="detail-item">
+                <label>Due Date</label>
+                <div id="job-due-date">-</div>
+            </div>
+
+            <div class="detail-item">
+                <label>Completed At</label>
+                <div id="job-completed-at">-</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- BUSINESS INFO -->
+    <div class="card">
+
+        <div class="card-header">
+
+            <div>
+                Business Information
+            </div>
+
+            <button id="btn-edit-business" class="btn-primary">
+                Edit
+            </button>
+
+        </div>
+
+
+
+        <div class="detail-grid">
+
+            <div class="detail-item">
+                <label>
+                    Work Group
+                </label>
+
+                <div id="job-work-group">
+                    -
+                </div>
+            </div>
+
+
+
+            <div class="detail-item">
+                <label>
+                    Work Type
+                </label>
+
+                <div id="job-work-type">
+                    -
+                </div>
+            </div>
+
+
+
+            <div class="detail-item">
+                <label>
+                    Contractor
+                </label>
+
+                <div id="job-contractor">
+                    -
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- NOTE -->
+    <div id="note-section" class="card" style="display:none;">
+
+        <div class="card-header">
+            Ghi chú
+        </div>
+
+        <div id="job-note" class="job-note">
+            -
+        </div>
+
+    </div>
+
+
+
+    <!-- INSPECTION -->
+    <div id="inspection-section" class="card" style="display:none;">
+
+        <div class="card-header">
+            Inspection Progress
+        </div>
+
+        <div id="inspection-summary">
+
+        </div>
+
+        <div id="inspection-tree">
+
+        </div>
+        <div class="inspection-room-action">
+
+            <button id="btn-manage-rooms" class="btn btn-primary">
+                Manage Rooms
+            </button>
+
+        </div>
+
+
+
+        <div id="assigned-room-list">
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ATTACHMENTS -->
+    <div id="attachment-section" class="card" style="display:none;">
+
+        <div class="card-header">
+            Tài liệu đinh kèm
+        </div>
+
+        <div id="attachment-list" class="attachment-grid">
+
+        </div>
+
+    </div>
+
+</div>
+<div id="imageViewer" class="modal hidden" onclick="closeImageViewer()">
+    <img id="viewerImg" class="viewer-img">
+</div>
+<div id="business-drawer" class="drawer">
+
+    <div class="drawer-header">
+
+        <h2>
+            Edit Business Information
+        </h2>
+
+        <button id="btn-close-business-drawer" class="btn-icon">
+            ✕
+        </button>
+
+    </div>
+
+
+
+    <div class="drawer-body">
+
+        <!-- WORK GROUP -->
+        <div class="form-group">
+
+            <label>
+                Work Group
+            </label>
+
+            <select id="business-work-group">
+
+                <option value="">
+                    Select Group
+                </option>
+
+                <option value="ME">
+                    ME
+                </option>
+
+                <option value="CONSTRUCTION">
+                    XD
+                </option>               
+
+            </select>
+
+        </div>
+
+
+
+        <!-- WORK TYPE -->
+        <div class="form-group">
+
+            <label>
+                Work Type
+            </label>
+
+            <select id="business-work-type">
+
+                <option value="">
+                    Select Type
+                </option>
+
+                <option value="INTERNAL">
+                    INTERNAL
+                </option>
+
+                <option value="EXTERNAL">
+                    EXTERNAL
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- CONTRACTOR -->
+        <div class="form-group">
+
+            <label>
+                Contractor
+            </label>
+
+            <select id="business-contractor-id">
+
+                <option value="">
+                    Select Contractor
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="drawer-footer">
+
+        <button id="btn-save-business" class="btn-primary">
+            Save
+        </button>
+
+    </div>
+
+</div>
+
+<script src="/js/portals/manager/periodic-work/job-detail.js"></script>

@@ -1,0 +1,167 @@
+<div class="content">
+    <!-- views/portals/manager/master-data/asset-types.ejs -->
+
+    <div class="manager-page">
+
+        <div class="manager-page-header">
+
+            <div>
+
+                <h1>
+                    Asset Types
+                </h1>
+
+                <p>
+                    Manage asset types
+                </p>
+
+            </div>
+
+
+
+            <button class="btn-primary" id="btn-add-asset-type">
+                + Add Asset Type
+            </button>
+
+        </div>
+
+
+
+        <!-- TABLE -->
+
+        <div class="manager-table-card">
+
+            <table class="manager-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th width="80">
+                            STT
+                        </th>
+
+                        <th width="160">
+                            Code
+                        </th>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th width="180">
+                            Group
+                        </th>
+
+                        <th width="220">
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="asset-type-table-body"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DRAWER -->
+
+    <div class="drawer" id="asset-type-drawer">
+
+        <div class="drawer-content">
+
+            <!-- HEADER -->
+
+            <div class="drawer-header">
+
+                <h2 id="asset-type-drawer-title">
+                    Create Asset Type
+                </h2>
+
+
+
+                <button class="drawer-close-btn" id="btn-close-asset-type-drawer">
+                    ✕
+                </button>
+
+            </div>
+
+
+
+            <!-- BODY -->
+
+            <div class="drawer-body">
+
+                <input type="hidden" id="asset-type-id">
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Asset Code *
+                    </label>
+
+                    <input type="text" id="asset-type-code">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Asset Name *
+                    </label>
+
+                    <input type="text" id="asset-type-name">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Group Name
+                    </label>
+
+                    <input type="text" id="asset-type-group-name">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOOTER -->
+
+            <div class="drawer-footer">
+
+                <button class="btn-secondary" id="btn-close-asset-type-drawer">
+                    Cancel
+                </button>
+
+
+
+                <button class="btn-primary" id="btn-save-asset-type">
+                    Save
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="/js/portals/manager/master-data/asset-types.js"></script>
+</div>

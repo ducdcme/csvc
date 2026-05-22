@@ -1,0 +1,208 @@
+<!-- views/portals/manager/dashboard.ejs -->
+<div class="content">
+    <div class="dashboard-page">
+
+        <div class="dashboard-header">
+
+            <div>
+                <h1 class="dashboard-title">
+                    Tổng quan hệ thống
+                </h1>
+
+                <p class="dashboard-subtitle">
+                    CSVC Management System - Manager Portal
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <div class="dashboard-summary-grid">
+
+            <div class="summary-card">
+                <div class="summary-icon">🛠️</div>
+
+                <div class="summary-content">
+                    <div class="summary-value" id="repair-total">
+                        128
+                    </div>
+
+                    <div class="summary-label">
+                        Phiếu sửa chữa
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="summary-card">
+                <div class="summary-icon">📋</div>
+
+                <div class="summary-content">
+                    <div class="summary-value" id="inspection-total">
+                        32
+                    </div>
+
+                    <div class="summary-label">
+                        Kiểm tra hôm nay
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="summary-card">
+                <div class="summary-icon">🔁</div>
+
+                <div class="summary-content">
+                    <div class="summary-value" id="periodic-total">
+                        21
+                    </div>
+
+                    <div class="summary-label">
+                        Công việc định kỳ
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="summary-card">
+                <div class="summary-icon">⚠️</div>
+
+                <div class="summary-content">
+                    <div class="summary-value" id="incident-total">
+                        7
+                    </div>
+
+                    <div class="summary-label">
+                        Công việc phát sinh
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!-- QUICK ACTION -->
+
+        <div class="dashboard-section">
+
+            <div class="section-title">
+                Truy cập nhanh
+            </div>
+
+            <div class="quick-action-grid">
+
+                <div class="quick-action-card" onclick="location.href='/manager/master-data/rooms'">
+                    <div class="quick-action-icon">🏫</div>
+
+                    <div class="quick-action-title">
+                        Quản lý phòng
+                    </div>
+
+                    <div class="quick-action-desc">
+                        Building / Floor / Room
+                    </div>
+                </div>
+
+
+                <div class="quick-action-card" onclick="location.href='/manager/master-data/room-type-assets'">
+                    <div class="quick-action-icon">🗂️</div>
+
+                    <div class="quick-action-title">
+                        Room Assets
+                    </div>
+
+                    <div class="quick-action-desc">
+                        Mapping asset theo room type
+                    </div>
+                </div>
+
+
+                <div class="quick-action-card" onclick="location.href='/manager/import/locations'">
+                    <div class="quick-action-icon">📥</div>
+
+                    <div class="quick-action-title">
+                        Import dữ liệu
+                    </div>
+
+                    <div class="quick-action-desc">
+                        Import phòng / asset
+                    </div>
+                </div>
+
+
+                <div class="quick-action-card" onclick="location.href='/manager/users'">
+                    <div class="quick-action-icon">👥</div>
+
+                    <div class="quick-action-title">
+                        Người dùng
+                    </div>
+
+                    <div class="quick-action-desc">
+                        User / Role / Permission
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RECENT ACTIVITY -->
+
+        <div class="dashboard-section">
+
+            <div class="section-title">
+                Hoạt động gần đây
+            </div>
+
+            <div class="dashboard-table-card">
+
+                <table class="dashboard-table">
+
+                    <thead>
+                        <tr>
+                            <th>Thời gian</th>
+                            <th>Module</th>
+                            <th>Nội dung</th>
+                            <th>Người thực hiện</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>10:32</td>
+                            <td>Repair</td>
+                            <td>Tạo phiếu sửa chữa A101</td>
+                            <td>Nguyễn Văn A</td>
+                        </tr>
+
+                        <tr>
+                            <td>09:12</td>
+                            <td>Inspection</td>
+                            <td>Submit kiểm tra Khu A</td>
+                            <td>Trần Văn B</td>
+                        </tr>
+
+                        <tr>
+                            <td>08:20</td>
+                            <td>Master Data</td>
+                            <td>Thêm phòng LAB01</td>
+                            <td>Admin</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script src="/js/portals/manager/dashboard.js"></script>

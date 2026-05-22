@@ -1,0 +1,121 @@
+<div class="content">
+    <div class="file-tool">
+
+        <div class="tool-header">
+
+            <input type="number" id="fileIdInput" placeholder="Nhập file ID">
+
+            <button type="button" onclick="loadFile()">
+                Load
+            </button>
+
+        </div>
+
+        <div class="preview-wrapper">
+
+            <img id="previewImage" class="preview-image">
+
+        </div>
+
+        <div class="tool-actions">
+
+            <button type="button" onclick="rotateImage('left')">
+                ↺ Rotate Left
+            </button>
+
+            <button type="button" onclick="rotateImage('right')">
+                ↻ Rotate Right
+            </button>
+
+        </div>
+
+    </div>
+</div>
+<script>
+
+    let currentFileId = null
+
+    function loadFile() {
+
+        const fileId =
+            document
+                .getElementById('fileIdInput')
+                .value
+
+        if (!fileId) {
+            return showError('Nhập file ID')
+        }
+
+        currentFileId = fileId
+
+        const img =
+            document.getElementById('previewImage')
+
+        img.src =
+            `/api/files/${fileId}`
+    }
+
+    async function rotateImage(direction) {
+
+        if (!currentFileId) {
+            return showError('Chưa load file')
+        }
+
+        try {
+
+            const res = await fetch(
+                `/admin/files/${currentFileId}/rotate`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        direction
+                    })
+                }
+            )
+
+            const result = await res.json()
+
+            if (!result.success) {
+                return showError(result.message)
+            }
+
+            showSuccess(result.message)
+
+            // reload image
+            const img =
+                document.getElementById('previewImage')
+
+            img.src =
+                `/api/files/${currentFileId}?t=${Date.now()}`
+
+        } catch (err) {
+
+            showError(err.message)
+
+        }
+
+    }
+
+</script>
+<style>
+    .file-tool {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 700px;
+    }
+
+    .tool-header {
+        display: flex;
+        gap: 8px;
+    }
+
+    .preview-image {
+        max-width: 100%;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+</style>

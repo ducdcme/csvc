@@ -1,0 +1,55 @@
+<div class="content">
+
+    <%- include('../../../partials/page-header', { title: 'Báo hỏng' , subtitle: 'Gửi yêu cầu tới bộ phận kỹ thuật' ,
+        breadcrumb: 'Trang chủ / Báo hỏng cơ sở vật chất' }) %>
+        <div class="container">
+
+            <div id="breadcrumb" class="stepbar">
+                📍 Chọn tòa nhà
+            </div>
+            <div class="card">
+
+                <h3>🔍 Tìm nhanh phòng/khu vực</h3>
+
+                <input id="searchRoom" class="search" placeholder="Nhập tên phòng/khu vực...">
+
+                <div id="searchResult"></div>
+
+            </div>
+            <!-- STEP LIST (DUY NHẤT) -->
+            <div id="stepListContainer" class="card">
+                <h3 id="stepTitle">Chọn theo tòa nhà</h3>
+                <div class="chips" id="stepList"></div>
+            </div>
+
+            <!-- FORM -->
+            <div class="card" id="formSection" style="display:none">
+
+                <h3>Mô tả sự cố hoặc <a href="javascript:backToRoom()"><button class="change-room">← Chọn
+                            lại</button></a></h3>
+
+                <div id="selectedInfo" style="margin-bottom:8px;color:#64748b"></div>
+
+
+                <textarea id="desc" placeholder="Mô tả chi tiết sự cố..."></textarea>
+                <div class="upload-box" onclick="triggerUpload('fileInput')">
+                    + Thêm ảnh
+                </div>
+                <input type="file" id="fileInput" multiple hidden>
+
+                <div id="preview"></div>
+
+                <button id="submitBtn" class="submit">
+                    Gửi báo hỏng
+                </button>
+
+                <div id="errorBox"></div>
+                <div id="successBox"></div>
+
+            </div>
+            <div id="previewModal" class="preview-modal">
+                <img id="previewModalImg" />
+            </div>
+        </div>
+</div>
+<script src="/js/portals/tech/repair/repairs-create.js"></script>

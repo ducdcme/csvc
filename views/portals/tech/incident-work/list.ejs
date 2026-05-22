@@ -1,0 +1,42 @@
+<div class="content">
+    <div class="iw-page">
+
+        <div class="iw-header">
+            <div>
+                <h1>Công việc phát sinh</h1>
+                <p>Theo dõi và thực hiện công việc phát sinh</p>
+            </div>
+
+            <button class="iw-fab permission-hidden" data-permission="incident.create"
+                onclick="window.location.href='/tech/incident-work/create'">
+                +
+            </button>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="iw-stats-bar">
+
+            <div class="iw-stat-pill">
+                <strong id="sumInternal">0</strong>
+                Nội bộ
+            </div>
+
+            <div class="iw-stat-pill">
+                <strong id="sumExternal">0</strong>
+                Nhà thầu
+            </div>
+
+            <div class="iw-stat-pill">
+                <strong id="sumOverdue">0</strong>
+                Quá hạn
+            </div>
+
+        </div>
+
+        <div id="incidentSections"></div>
+
+    </div>
+
+    <link rel="stylesheet" href="/css/tech.css">
+    <script src="/js/portals/tech/incident-work/list.js"></script>
+</div>

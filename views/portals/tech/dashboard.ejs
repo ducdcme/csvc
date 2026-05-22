@@ -1,0 +1,30 @@
+<div class="content">
+    <div class="dashboard-wrapper">
+        <!-- HEALTH -->
+        <div id="healthContainer" onclick="location.href='/tech/inspection'"></div>
+
+        <!-- SUMMARY -->
+        <div class="section-title">TỔNG QUAN VẬN HÀNH</div>
+        <div id="summaryContainer"></div>
+
+        <!-- CHART -->
+        <div class="card">
+            <canvas id="dashboardChart"></canvas>
+        </div>
+
+        <!-- TODAY TASK -->
+        <div class="section-title">
+            CÔNG VIỆC THÁNG NÀY
+        </div>
+        <div id="monthlyTaskContainer" class="list"></div>
+
+        <!-- RECENT -->
+        <div class="section-title">
+            HOÀN THÀNH GẦN ĐÂY
+        </div>
+        <div class="list" id="recentContainer"></div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="/css/techdashboard.css">
+<script src="/js/portals/tech/dashboard.js"></script>

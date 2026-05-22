@@ -1,0 +1,84 @@
+<div class="content">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+
+        <div>
+            <h1 class="page-title">
+                Generate Periodic Jobs
+            </h1>
+
+            <p class="page-subtitle">
+                Manual periodic job generation
+            </p>
+        </div>
+
+    </div>
+
+
+
+    <!-- GENERATE FORM -->
+    <div class="card">
+
+        <div class="form-group">
+            <label>
+                Definition
+            </label>
+
+            <select id="definition-id">
+                <option value="">
+                    Select Definition
+                </option>
+            </select>
+        </div>
+
+
+
+        <div class="form-group">
+            <label>
+                Due Date
+            </label>
+
+            <input
+                type="date"
+                id="due-date"
+            >
+        </div>
+
+
+
+        <div class="form-action">
+
+            <button
+                id="btn-generate"
+                class="btn-primary"
+            >
+                Generate Job
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- GENERATED RESULT -->
+    <div
+        id="generate-result-section"
+        class="card"
+        style="display:none;"
+    >
+
+        <div class="card-header">
+            Generated Result
+        </div>
+
+        <div id="generate-result">
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/js/portals/manager/periodic-work/generate.js"></script>

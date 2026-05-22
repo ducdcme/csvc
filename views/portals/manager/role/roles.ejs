@@ -1,0 +1,219 @@
+<!-- views/portals/manager/roles/roles.ejs -->
+<div class="content">
+    <div class="manager-page">
+
+        <div class="manager-page-header">
+
+            <div>
+
+                <h1>
+                    Roles & Permissions
+                </h1>
+
+                <p>
+                    Manage system roles and permissions
+                </p>
+
+            </div>
+
+
+
+            <button class="btn-primary" id="btn-add-role">
+                + Add Role
+            </button>
+
+        </div>
+
+
+
+        <div class="role-layout">
+
+            <!-- LEFT -->
+
+            <div class="role-left">
+
+                <div class="manager-table-card">
+
+                    <table class="manager-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th width="80">
+                                    STT
+                                </th>
+
+                                <th>
+                                    Role
+                                </th>
+
+                                <th width="120">
+                                    Permissions
+                                </th>
+
+                                <th width="120">
+                                    System
+                                </th>
+
+                                <th width="180">
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="role-table-body"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RIGHT -->
+
+            <div class="role-right">
+
+                <div class="permission-card">
+
+                    <div class="permission-header">
+
+                        <div>
+
+                            <h2 id="permission-role-name">
+                                Select Role
+                            </h2>
+
+                            <p>
+                                Configure role permissions
+                            </p>
+
+                        </div>
+
+
+
+                        <button class="btn-primary" id="btn-save-permissions">
+                            Save Permissions
+                        </button>
+
+                    </div>
+
+
+
+                    <div class="permission-body" id="permission-container">
+
+                        <div class="empty-state">
+
+                            Select role to configure permissions
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DRAWER -->
+
+    <div class="drawer" id="role-drawer">
+
+        <div class="drawer-content">
+
+            <!-- HEADER -->
+
+            <div class="drawer-header">
+
+                <h2 id="role-drawer-title">
+                    Create Role
+                </h2>
+
+
+
+                <button class="drawer-close-btn" id="btn-close-role-drawer">
+                    ✕
+                </button>
+
+            </div>
+
+
+
+            <!-- BODY -->
+
+            <div class="drawer-body">
+
+                <input type="hidden" id="role-id">
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Code *
+                    </label>
+
+                    <input type="text" id="role-code">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Name *
+                    </label>
+
+                    <input type="text" id="role-name">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea id="role-description" rows="4"></textarea>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOOTER -->
+
+            <div class="drawer-footer">
+
+                <button class="btn-secondary" id="btn-cancel-role">
+                    Cancel
+                </button>
+
+
+
+                <button class="btn-primary" id="btn-save-role">
+                    Save
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/js/portals/manager/roles/roles.js"></script>

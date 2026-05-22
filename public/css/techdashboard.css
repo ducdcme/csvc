@@ -1,0 +1,294 @@
+ .dashboard-wrapper {
+     --db-bg: #f8f9fc;
+     --db-card: #ffffff;
+     --db-incident: #fdf2fa;
+     --db-maintenance: #fefbe8;
+     --db-ops: #f0f9ff;
+     --db-safe: #10b981;
+     --db-danger: #ef4444;
+
+     font-family: 'Inter', -apple-system, sans-serif;
+     background-color: var(--db-bg);
+     padding: 15px;
+     min-height: 100vh;
+ }
+
+ /* Section An toàn nổi bật ở giữa */
+ .safety-center {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     text-align: center;
+     padding: 40px 20px;
+     background: var(--db-card);
+     border-radius: 24px;
+     margin-bottom: 30px;
+     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+     border: 1px solid #e2e8f0;
+ }
+
+ .safety-visual {
+     position: relative;
+     margin-bottom: 15px;
+ }
+
+ .safety-visual .material-icons {
+     font-size: 80px;
+     /* Cực lớn trên mobile */
+     display: block;
+ }
+
+ .status-glow {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     width: 100px;
+     height: 100px;
+     border-radius: 50%;
+     filter: blur(20px);
+     opacity: 0.3;
+     z-index: -1;
+ }
+
+ /* Trạng thái An toàn */
+ .is-safe {
+     color: var(--db-safe);
+ }
+
+ .is-safe .status-glow {
+     background: var(--db-safe);
+ }
+
+ /* Trạng thái Nguy hiểm */
+ .is-danger {
+     color: var(--db-danger);
+ }
+
+ .is-danger .status-glow {
+     background: var(--db-danger);
+ }
+
+ .safety-text {
+     font-size: 20px;
+     font-weight: 800;
+     margin: 0;
+     letter-spacing: -0.5px;
+ }
+
+ .safety-desc {
+     font-size: 14px;
+     color: #64748b;
+     margin-top: 5px;
+ }
+
+ h1 {
+     margin-bottom: 8px;
+ }
+
+ .section-title {
+     font-weight: bold;
+     margin: 16px 0 12px;
+     color: #374151;
+ }
+
+ /* ===== STAT BOX (renamed from card) ===== */
+ .stat-grid {
+     display: flex;
+     gap: 12px;
+     margin-bottom: 16px;
+ }
+
+ .stat-box {
+     flex: 1;
+     border-radius: 12px;
+     padding: 16px;
+     color: #fff;
+ }
+
+ .stat-blue {
+     background: #3b82f6;
+ }
+
+ .stat-blue .stat-title {
+     color: #1e3a8a;
+
+ }
+
+ .stat-orange {
+     background: #f59e0b;
+ }
+
+ .stat-orange .stat-title {
+     color: #652002;
+
+ }
+
+ .stat-green {
+     background: #22c55e;
+ }
+
+ .stat-green .stat-title {
+     color: #063b18;
+ }
+
+ .stat-title {
+     font-size: 13px;
+     font-weight: 700;
+
+
+ }
+
+ .stat-value {
+     font-size: 28px;
+     font-weight: bold;
+     margin: 8px 0;
+ }
+
+ .stat-sub {
+     font-size: 12px;
+     opacity: 0.9;
+
+ }
+
+ /* Chart */
+ .chart-box {
+     background: #fff;
+     border-radius: 12px;
+     padding: 16px;
+     margin-bottom: 16px;
+ }
+
+ /* List */
+ .list {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+ }
+
+ .item {
+     background: #fff;
+     border-radius: 12px;
+     padding: 12px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ .item-left {
+     display: flex;
+     gap: 10px;
+     align-items: center;
+ }
+
+ .icon-box {
+     width: 36px;
+     height: 36px;
+     border-radius: 10px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ .icon-red {
+     background: #fee2e2;
+     color: #ef4444;
+ }
+
+ .icon-orange {
+     background: #fef3c7;
+     color: #f59e0b;
+ }
+
+ .icon-yellow {
+     background: #fef9c3;
+     color: #ca8a04;
+ }
+
+ .item-title {
+     font-weight: bold;
+     font-size: 14px;
+ }
+
+ .item-sub {
+     font-size: 12px;
+     color: #6b7280;
+ }
+
+ .tag {
+     font-size: 11px;
+     padding: 2px 6px;
+     border-radius: 6px;
+     margin-left: 6px;
+ }
+
+ .tag-red {
+     background: #fee2e2;
+     color: #ef4444;
+ }
+
+ .tag-orange {
+     background: #fde68a;
+     color: #b45309;
+ }
+
+ .tag-gray {
+     background: #e5e7eb;
+     color: #374151;
+ }
+
+ .material-icons {
+     font-size: 18px;
+ }
+
+ .dashboard-health {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+
+     padding: 14px 16px;
+     border-radius: 10px;
+     margin-bottom: 16px;
+
+     background: #fff;
+ }
+
+ .dashboard-health.safe {
+     border-left: 5px solid #22c55e;
+ }
+
+ .dashboard-health.warning {
+     border-left: 5px solid #ef4444;
+ }
+
+ .dashboard-health-icon {
+     font-size: 28px;
+ }
+
+ .dashboard-health-title {
+     font-size: 18px;
+     font-weight: 700;
+ }
+
+ .dashboard-health.safe .dashboard-health-title {
+     color: #16a34a;
+ }
+
+ .dashboard-health.warning .dashboard-health-title {
+     color: #dc2626;
+ }
+
+ .dashboard-health-desc {
+     margin-top: 4px;
+     font-size: 13px;
+     color: #666;
+ }
+
+ .material-symbols-outlined {
+     font-variation-settings:
+         'FILL' 0,
+         'wght' 400,
+         'GRAD' 0,
+         'opsz' 24
+ }

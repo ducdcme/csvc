@@ -1,0 +1,113 @@
+<div class="content mt-3">
+
+    <!-- ===== JOB INFO ===== -->
+    <div class="card mb-3 p-3">
+        <h5 id="jobTitle">Đang tải...</h5>
+        <div class="text-muted">
+            <div>Loại công việc: <span id="jobTypeName"></span></div>
+            <div>Thời hạn hoàn thành: <span id="jobDue"></span></div>
+        </div>
+    </div>
+
+    <!-- ===== ẢNH ===== -->
+    <div class="card mb-3 p-3">
+        <h6>Ảnh thực hiện công việc</h6>
+
+        <div class="text-muted mb-2" style="font-size:13px;">
+            • Upload ảnh để xác nhận<br>
+            • Có thể chọn nhiều ảnh
+        </div>
+
+        <div class="upload-box" onclick="triggerFile()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" />
+            </svg>
+            <span>Thêm ảnh thực hiện</span>
+            <input type="file" id="files" multiple style="display:none" onchange="handleFiles(event)">
+        </div>
+
+        <div id="preview"></div>
+
+        <div class="form-check mt-2">
+            <input type="checkbox" id="noFile" hidden>
+        </div>
+    </div>
+
+    <!-- ===== NOTE ===== -->
+    <div class="card mb-3 p-3">
+        <button class="btn btn-success w-100" onclick="toggleNote()">+ Thêm ghi chú</button>
+        <div id="noteWrap" style="display:none">
+            <textarea id="note" class="form-control"></textarea>
+        </div>
+    </div>
+
+    <button id="submitBtn" class="btn btn-primary w-100" onclick="submitOperation()">Xác nhận & Hoàn thành</button>
+
+</div>
+
+<!-- MODAL PREVIEW -->
+<div id="imgModal" class="img-modal" onclick="closePreview()" style="display:none">
+    <img id="imgPreviewLarge">
+</div>
+
+<style>
+    .upload-box {
+        display: flex;
+        /* Kích hoạt flexbox */
+        align-items: center;
+        /* Căn giữa các thành phần theo chiều dọc */
+        justify-content: center;
+        /* Căn giữa các thành phần theo chiều ngang */
+        gap: 8px;
+        padding: 5px;
+        cursor: pointer;
+        margin-bottom: 5px;
+        margin-top: 10px;
+    }
+
+    .preview-item {
+        position: relative;
+        display: inline-block;
+        margin: 5px;
+    }
+
+    .preview-item img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        cursor: pointer;
+    }
+
+    .remove-btn {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: red;
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .img-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img-modal img {
+        max-width: 90%;
+        max-height: 90%;
+    }
+</style>
+
+<script src="/js/portals/tech/periodic/operation-submit.js"></script>

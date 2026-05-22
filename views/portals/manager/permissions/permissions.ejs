@@ -1,0 +1,163 @@
+<!-- views/portals/manager/permissions/permissions.ejs -->
+<div class="content">
+    <div class="manager-page">
+
+        <div class="manager-page-header">
+
+            <div>
+
+                <h1>
+                    Permissions
+                </h1>
+
+                <p>
+                    Manage system permissions
+                </p>
+
+            </div>
+
+
+
+            <button class="btn-primary" id="btn-add-permission">
+                + Add Permission
+            </button>
+
+        </div>
+
+
+
+        <div class="manager-table-card">
+
+            <table class="manager-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th width="80">
+                            STT
+                        </th>
+
+                        <th width="240">
+                            Module
+                        </th>
+
+                        <th width="240">
+                            Action
+                        </th>
+
+                        <th>
+                            Code
+                        </th>
+
+                        <th width="180">
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="permission-table-body"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DRAWER -->
+
+    <div class="drawer" id="permission-drawer">
+
+        <div class="drawer-content">
+
+            <!-- HEADER -->
+
+            <div class="drawer-header">
+
+                <h2 id="permission-drawer-title">
+                    Create Permission
+                </h2>
+
+
+
+                <button class="drawer-close-btn" id="btn-close-permission-drawer">
+                    ✕
+                </button>
+
+            </div>
+
+
+
+            <!-- BODY -->
+
+            <div class="drawer-body">
+
+                <input type="hidden" id="permission-id">
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Module Key *
+                    </label>
+
+                    <input type="text" id="permission-module-key" placeholder="users">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Action Key *
+                    </label>
+
+                    <input type="text" id="permission-action-key" placeholder="view">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Permission Code
+                    </label>
+
+                    <input type="text" id="permission-code" disabled>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOOTER -->
+
+            <div class="drawer-footer">
+
+                <button class="btn-secondary" id="btn-cancel-permission">
+                    Cancel
+                </button>
+
+
+
+                <button class="btn-primary" id="btn-save-permission">
+                    Save
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/js/portals/manager/permissions/permissions.js"></script>

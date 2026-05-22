@@ -1,0 +1,253 @@
+<div class="content">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+
+        <div>
+            <h1 class="page-title">
+                Periodic Definitions
+            </h1>
+
+            <p class="page-subtitle">
+                Manage periodic work definitions
+            </p>
+        </div>
+
+        <button id="btn-add-definition" class="btn-primary">
+            Add Definition
+        </button>
+
+    </div>
+
+
+
+    <!-- FILTER -->
+    <div class="card filter-card">
+
+        <div class="filter-grid">
+
+            <div class="form-group">
+                <label>
+                    Type
+                </label>
+
+                <select id="filter-type-id">
+                    <option value="">
+                        All Types
+                    </option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label>
+                    Status
+                </label>
+
+                <select id="filter-status">
+                    <option value="">
+                        All Status
+                    </option>
+
+                    <option value="ACTIVE">
+                        ACTIVE
+                    </option>
+
+                    <option value="INACTIVE">
+                        INACTIVE
+                    </option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label>
+                    Keyword
+                </label>
+
+                <input type="text" id="filter-keyword" placeholder="Search title...">
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TABLE -->
+    <div class="card">
+
+        <div class="table-wrapper">
+
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Cycle</th>
+                        <th>First Due</th>
+                        <th>Require File</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="definition-table-body">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DRAWER -->
+    <div id="definition-drawer" class="drawer">
+
+        <div class="drawer-header">
+
+            <h2 id="definition-drawer-title">
+                Create Definition
+            </h2>
+
+            <button id="btn-close-definition-drawer" class="btn-icon">
+                ✕
+            </button>
+
+        </div>
+
+
+        <div class="drawer-body">
+
+            <input type="hidden" id="definition-id">
+
+
+            <div class="form-group">
+                <label>
+                    Title
+                </label>
+
+                <input type="text" id="definition-title">
+            </div>
+
+
+            <div class="form-group">
+                <label>
+                    Type
+                </label>
+
+                <select id="definition-type-id">
+                    <option value="">
+                        Select Type
+                    </option>
+                </select>
+            </div>
+
+
+            <div class="grid-2">
+
+                <div class="form-group">
+                    <label>
+                        Cycle Unit
+                    </label>
+
+                    <select id="definition-cycle-unit">
+                        <option value="day">Day</option>
+                        <option value="week">Week</option>
+                        <option value="month">Month</option>
+                        <option value="year">Year</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label>
+                        Cycle Value
+                    </label>
+
+                    <input type="number" id="definition-cycle-value" min="1" value="1">
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+                <label>
+                    First Due Date
+                </label>
+
+                <input type="date" id="definition-first-due-date">
+            </div>
+
+
+            <div class="grid-2">
+
+                <div class="form-group">
+                    <label>
+                        Active From
+                    </label>
+
+                    <input type="date" id="definition-active-from">
+                </div>
+
+
+                <div class="form-group">
+                    <label>
+                        Active To
+                    </label>
+
+                    <input type="date" id="definition-active-to">
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+                <label>
+                    Status
+                </label>
+
+                <select id="definition-status">
+                    <option value="ACTIVE">
+                        ACTIVE
+                    </option>
+
+                    <option value="INACTIVE">
+                        INACTIVE
+                    </option>
+                </select>
+            </div>
+
+
+            <div class="form-checkbox">
+
+                <input type="checkbox" id="definition-requires-result-file">
+
+                <label for="definition-requires-result-file">
+                    Requires Result File
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="drawer-footer">
+
+            <button id="btn-save-definition" class="btn-primary">
+                Save
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="/js/portals/manager/periodic-work/definitions.js"></script>

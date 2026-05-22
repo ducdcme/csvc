@@ -1,0 +1,15 @@
+<table class="table">
+    <thead>
+        <tr>
+            <% headers.forEach(h=> { %>
+                <th>
+                    <%= h %>
+                </th>
+                <% }) %>
+        </tr>
+    </thead>
+
+    <tbody>
+        <%- rows %>
+    </tbody>
+</table>

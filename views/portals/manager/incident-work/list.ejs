@@ -1,0 +1,121 @@
+<div class="content">
+    <div id="incident-work-list">
+
+        <div class="iw-toolbar">
+            <div class="iw-toolbar-left">
+                <div>
+                    <h2 class="iw-page-title">Incident Work</h2>
+                    <p class="iw-page-subtitle">
+                        Operational incident management workspace
+                    </p>
+                </div>
+            </div>
+
+            <div class="iw-toolbar-right">
+                <div class="iw-search-box">
+                    <span class="material-symbols-outlined">search</span>
+                    <input type="text" id="iw-search-input" placeholder="Search incident..." />
+                </div>
+
+                <button type="button" class="iw-btn iw-btn-secondary" id="iw-refresh-btn">
+                    <span class="material-symbols-outlined">refresh</span>
+                    Refresh
+                </button>
+
+                <a href="/manager/incident-work/create" class="iw-btn iw-btn-primary">
+                    <span class="material-symbols-outlined">add</span>
+                    New Incident
+                </a>
+            </div>
+        </div>
+
+        <div class="iw-summary-grid" id="iw-summary-grid">
+            <div class="iw-summary-card" data-summary="OPEN">
+                <div class="iw-summary-label">Open</div>
+                <div class="iw-summary-value" id="iw-summary-open">0</div>
+            </div>
+
+            <div class="iw-summary-card" data-summary="CONTRACTING">
+                <div class="iw-summary-label">Contracting</div>
+                <div class="iw-summary-value" id="iw-summary-contracting">0</div>
+            </div>
+
+            <div class="iw-summary-card" data-summary="IN_PROGRESS">
+                <div class="iw-summary-label">In Progress</div>
+                <div class="iw-summary-value" id="iw-summary-progress">0</div>
+            </div>
+
+            <div class="iw-summary-card" data-summary="REVIEWING">
+                <div class="iw-summary-label">Reviewing</div>
+                <div class="iw-summary-value" id="iw-summary-reviewing">0</div>
+            </div>
+
+            <div class="iw-summary-card iw-summary-danger" data-summary="OVERDUE">
+                <div class="iw-summary-label">Overdue</div>
+                <div class="iw-summary-value" id="iw-summary-overdue">0</div>
+            </div>
+
+            <div class="iw-summary-card" data-summary="CLOSED">
+                <div class="iw-summary-label">Closed</div>
+                <div class="iw-summary-value" id="iw-summary-closed">0</div>
+            </div>
+        </div>
+
+        <div class="iw-filter-bar">
+            <div class="iw-filter-group">
+                <button class="iw-filter-chip active" data-filter-status="ALL">
+                    All
+                </button>
+
+                <button class="iw-filter-chip" data-filter-status="OPEN">
+                    Open
+                </button>
+
+                <button class="iw-filter-chip" data-filter-status="CONTRACTING">
+                    Contracting
+                </button>
+
+                <button class="iw-filter-chip" data-filter-status="PLANNING">
+                    Planning
+                </button>
+
+                <button class="iw-filter-chip" data-filter-status="IN_PROGRESS">
+                    In Progress
+                </button>
+
+                <button class="iw-filter-chip" data-filter-status="REVIEWING">
+                    Reviewing
+                </button>
+
+                <button class="iw-filter-chip" data-filter-status="CLOSED">
+                    Closed
+                </button>
+            </div>
+
+            <div class="iw-filter-options">
+                <select id="iw-work-type-filter" class="iw-select">
+                    <option value="ALL">All Types</option>
+                    <option value="INTERNAL">Internal</option>
+                    <option value="EXTERNAL">External</option>
+                </select>
+
+                <label class="iw-checkbox">
+                    <input type="checkbox" id="iw-overdue-filter" />
+                    <span>Overdue Only</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="iw-list-container" id="iw-list-container">
+            <div class="iw-empty-state">
+                Loading incidents...
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="/css/incident-manage.css">
+
+<script src="/js/portals/manager/incident-work/list.js"></script>

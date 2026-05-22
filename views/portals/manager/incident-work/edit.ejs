@@ -1,0 +1,173 @@
+<link rel="stylesheet" href="/css/incident-manage.css" />
+
+<div class="content">
+
+    <div id="incident-work-form">
+
+        <div class="iwf-header">
+
+            <div>
+                <div class="iwf-page-label">
+                    Incident Work
+                </div>
+
+                <h1 class="iwf-title" id="iwf-page-title">
+                    Create Incident
+                </h1>
+            </div>
+
+            <div class="iwf-status-badge" id="iwf-status-badge">
+                DRAFT
+            </div>
+
+        </div>
+
+        <div class="iwf-layout">
+
+            <div class="iwf-main-column">
+
+                <!-- BASIC INFORMATION -->
+
+                <div class="iwf-panel">
+
+                    <div class="iwf-section-title">
+                        Basic Information
+                    </div>
+
+                    <div class="iwf-grid iwf-grid-2">
+
+                        <div class="iwf-form-group">
+                            <label class="iwf-label">
+                                Title
+                            </label>
+
+                            <input type="text" id="iwf-title" class="iwf-input" placeholder="Incident title" />
+                        </div>
+
+                        <div class="iwf-form-group">
+                            <label class="iwf-label">
+                                Work Type
+                            </label>
+
+                            <select id="iwf-work-type" class="iwf-select">
+                                <option value="INTERNAL">
+                                    INTERNAL
+                                </option>
+
+                                <option value="EXTERNAL">
+                                    EXTERNAL
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="iwf-form-group">
+                        <label class="iwf-label">
+                            Work Group
+                        </label>
+
+                        <select id="iwf-work-group" class="iwf-select">
+                            <option value="">
+                                Select Work Group
+                            </option>
+
+                            <option value="ME">
+                                ME
+                            </option>
+
+                            <option value="XD">
+                                XD
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- DESCRIPTION -->
+
+                <div class="iwf-panel">
+
+                    <div class="iwf-section-title">
+                        Description
+                    </div>
+
+                    <div class="iwf-form-group">
+                        <label class="iwf-label">
+                            Description
+                        </label>
+
+                        <textarea id="iwf-description" class="iwf-textarea" rows="6"></textarea>
+                    </div>
+
+                    <div class="iwf-form-group">
+                        <label class="iwf-label">
+                            Internal Note
+                        </label>
+
+                        <textarea id="iwf-note" class="iwf-textarea" rows="4"></textarea>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- SIDE COLUMN -->
+
+            <div class="iwf-side-column">
+
+                <div class="iwf-panel iwf-sticky-panel">
+
+                    <div class="iwf-section-title">
+                        Schedule
+                    </div>
+
+                    <div class="iwf-form-group">
+                        <label class="iwf-label">
+                            Start Date
+                        </label>
+
+                        <input type="date" id="iwf-start-date" class="iwf-input" />
+                    </div>
+
+                    <div class="iwf-form-group">
+                        <label class="iwf-label">
+                            Due Date
+                        </label>
+
+                        <input type="date" id="iwf-due-date" class="iwf-input" />
+                    </div>
+
+                    <div class="iwf-workflow-notice" id="iwf-workflow-notice">
+                        Full editing available.
+                    </div>
+
+                    <div class="iwf-action-bar">
+
+                        <button type="button" class="iwf-btn iwf-btn-secondary" onclick="history.back()">
+                            Cancel
+                        </button>
+
+                        <button type="button" class="iwf-btn iwf-btn-primary" id="iwf-submit-btn">
+                            Save Incident
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    window.INCIDENT_FORM_MODE = 'edit';
+
+    window.INCIDENT_ID =
+        window.location.pathname.split('/').slice(-2)[0];
+</script>
+
+<script src="/js/portals/manager/incident-work/incident-form.js"></script>

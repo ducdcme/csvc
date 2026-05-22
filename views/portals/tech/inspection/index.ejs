@@ -1,0 +1,206 @@
+<div class="content">
+    <div class="dashboard">
+        <%- include('../../../partials/page-header', { title: 'BÁO CÁO' , subtitle: 'Ngăn ngừa rủi ro hệ thống kỹ thuật'
+            , breadcrumb: '' }) %>
+            <!-- TIME -->
+            <div class="time-bar">
+                <span id="today-text"></span>
+                <span id="clock-text"></span>
+            </div>
+
+            <!-- STATUS -->
+            <div class="card status-summary">
+                <div class="status-title">📋 TRẠNG THÁI NHIỆM VỤ NGÀY</div>
+                <div class="status-text">Tiến độ: <span id="today-status"></span></div>
+                <div class="status-desc">Khung giờ chụp & gửi: <span>17:00-23:00</span></div>
+            </div>
+
+            <!-- ZONES -->
+            <div id="zone-list"></div>
+            <div id="overdue-section" class="card">
+                <div><span class="dot-alert"></span>⚠️ BÁO CÁO QUÁ HẠN</div>
+                <div id="overdue-list"></div>
+            </div>
+            <!-- RECENT -->
+            <div class="card">
+                <div>📅 LỊCH SỬ HOÀN THÀNH GẦN ĐÂY</div>
+                <div id="recent-list"></div>
+            </div>
+
+    </div>
+</div>
+<script src="/js/portals/tech/inspection/inspection.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        InspectionPage.initDashboard();
+    });
+</script>
+<style>
+    .time-bar {
+        background-color: #ffffff;
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        color: #444;
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 15px;
+    }
+
+    .status-summary {
+        border-left: 5px solid #d93025;
+    }
+
+    .status-title {
+        font-size: 12px;
+        font-weight: bold;
+        color: #5f6368;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    .status-text {
+        font-size: 15px;
+        font-weight: bold;
+        color: #222;
+    }
+
+    .status-text span {
+        color: #d93025;
+        font-weight: bold;
+    }
+
+    .status-desc {
+        font-size: 12px;
+        color: #666;
+    }
+
+    .status-desc span {
+        color: #1a73e8;
+        font-weight: bold;
+    }
+
+    .zone-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+    .zone-name {
+        font-size: 17px;
+        font-weight: bold;
+        color: #202124;
+    }
+
+    .zone-card.locked {
+        opacity: 0.7;
+        filter: grayscale(1);
+        background-color: #f9f9f9;
+    }
+
+    .tag-lock {
+        font-size: 10px;
+        background: #eee;
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: #666;
+    }
+
+    .center-text {
+        text-align: center;
+        color: #d93025;
+        font-size: 11px;
+        margin-bottom: 10px;
+    }
+
+    .btn-report {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 13px;
+    }
+
+    .btn-report:hover {
+        background-color: #1a73e8;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .btn-disabled {
+        background-color: #dadce0;
+        color: #70757a;
+        cursor: not-allowed;
+    }
+
+    .recent-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 14px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .recent-item:last-child {
+        border-bottom: none;
+    }
+
+    .recent-left {
+        font-size: 15px;
+        color: #222;
+    }
+
+    .recent-right {
+        font-size: 14px;
+        color: #888;
+    }
+
+    .overdue-list {
+        background: #fff5f5;
+        /* Nền hồng nhạt để cảnh báo */
+        border-radius: 12px;
+        border: 1px solid #feb2b2;
+        overflow: hidden;
+    }
+
+    .overdue-item {
+        padding: 12px 15px;
+        border-bottom: 1px dashed #feb2b2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+    }
+
+    .overdue-item:last-child {
+        border-bottom: none;
+    }
+
+    .dot-alert {
+        height: 8px;
+        width: 8px;
+        background-color: #f56565;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 5px;
+        animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.3;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+</style>

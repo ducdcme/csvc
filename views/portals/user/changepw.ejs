@@ -1,0 +1,48 @@
+<div class="login-wrapper">
+
+    <div class="login-card">
+
+        <div class="user-avatar">
+            👨‍💼
+        </div>
+
+        <h1>Thay đổi mật khẩu!</h1>
+        <p class="sub">Nhập thông tin để thay đổi mật khẩu</p>
+
+
+
+        <div class="input-group">
+            <span>🔒</span>
+            <input id="old_password" name="old_password" placeholder="Mật khẩu cũ" type="password" required />
+            <span onclick="togglePassword('old_password')" class="eye">👁️</span>
+        </div>
+
+        <div class="input-group">
+            <span>🔒</span>
+            <input id="new_password" name="new_password" type="password" placeholder="Mật khẩu mới" required />
+            <span onclick="togglePassword('new_password')" class="eye">👁️</span>
+        </div>
+        <div class="input-group">
+            <span>🔒</span>
+            <input id="confirm_password" name="confirm_password" type="password" placeholder="Xác nhận mật khẩu"
+                required />
+            <span onclick="togglePassword('confirm_password')" class="eye">👁️</span>
+        </div>
+        <div class="message" id="message"></div>
+        <!-- <div class="options">
+            <label>
+                <input type="checkbox" /> Remember me
+            </label>
+
+            <a href="#">Quên mật khẩu?</a>
+        </div> -->
+
+        <button id="btnChangePw" class="btn-login">Xác nhận</button>
+
+
+
+    </div>
+
+</div>
+
+<script src="/js/portals/user/changepw.js"></script>

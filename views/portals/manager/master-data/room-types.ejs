@@ -1,0 +1,149 @@
+<!-- views/portals/manager/master-data/room-types.ejs -->
+<div class="content">
+    <div class="manager-page">
+
+        <div class="manager-page-header">
+
+            <div>
+
+                <h1>
+                    Room Types
+                </h1>
+
+                <p>
+                    Manage room types
+                </p>
+
+            </div>
+
+
+
+            <button class="btn btn-primary" id="btn-add-room-type">
+                + Add Room Type
+            </button>
+
+        </div>
+
+
+
+        <!-- TABLE -->
+
+        <div class="manager-table-card">
+
+            <table class="manager-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th width="80">
+                            STT
+                        </th>
+
+                        <th width="180">
+                            Code
+                        </th>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th width="220">
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="room-type-table-body"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DRAWER -->
+
+    <div class="drawer" id="room-type-drawer">
+
+        <div class="drawer-content">
+
+            <!-- HEADER -->
+
+            <div class="drawer-header">
+
+                <h2 id="room-type-drawer-title">
+                    Create Room Type
+                </h2>
+
+
+
+                <button class="drawer-close-btn" id="btn-close-room-type-drawer">
+                    ✕
+                </button>
+
+            </div>
+
+
+
+            <!-- BODY -->
+
+            <div class="drawer-body">
+
+                <input type="hidden" id="room-type-id">
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Room Type Code *
+                    </label>
+
+                    <input type="text" id="room-type-code">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Room Type Name *
+                    </label>
+
+                    <input type="text" id="room-type-name">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOOTER -->
+
+            <div class="drawer-footer">
+
+                <button class="btn-secondary" id="btn-close-room-type-drawer">
+                    Cancel
+                </button>
+
+
+
+                <button class="btn-primary" id="btn-save-room-type">
+                    Save
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script src="/js/portals/manager/master-data/room-types.js"></script>

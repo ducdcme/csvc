@@ -1,0 +1,291 @@
+<!-- views/portals/manager/master-data/rooms.ejs -->
+<div class="content">
+    <div class="manager-page">
+
+        <div class="manager-page-header">
+
+            <div>
+
+                <h1>
+                    Rooms
+                </h1>
+
+                <p>
+                    Manage rooms
+                </p>
+
+            </div>
+
+
+
+            <button class="btn btn-primary" id="btn-add-room">
+                + Add Room
+            </button>
+
+        </div>
+
+
+
+        <!-- FILTER -->
+
+        <div class="manager-filter-card">
+
+            <div class="filter-grid">
+
+                <div class="filter-group">
+
+                    <label>
+                        Building
+                    </label>
+
+                    <select id="filter-building-id">
+
+                        <option value="">
+                            Select Building
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="filter-group">
+
+                    <label>
+                        Floor
+                    </label>
+
+                    <select id="filter-floor-id">
+
+                        <option value="">
+                            Select Floor
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="filter-group">
+
+                    <label>
+                        Room Type
+                    </label>
+
+                    <select id="filter-room-type-id">
+
+                        <option value="">
+                            All Room Types
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="filter-group">
+
+                    <label>
+                        Keyword
+                    </label>
+
+                    <input type="text" id="filter-keyword" placeholder="Search...">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TABLE -->
+
+        <div class="manager-table-card">
+
+            <table class="manager-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th width="80">
+                            STT
+                        </th>
+
+                        <th width="140">
+                            Code
+                        </th>
+
+                        <th width="180">
+                            Room Name
+                        </th>
+
+                        <th width="180">
+                            Room Type
+                        </th>
+
+                        <th width="120">
+                            Floor
+                        </th>
+
+                        <th width="120">
+                            Building
+                        </th>
+
+                        <th width="220">
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="room-table-body"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DRAWER -->
+
+    <div class="drawer" id="room-drawer">
+
+        <div class="drawer-content">
+
+            <!-- HEADER -->
+
+            <div class="drawer-header">
+
+                <h2 id="room-drawer-title">
+                    Create Room
+                </h2>
+
+
+
+                <button class="drawer-close-btn" id="btn-close-room-drawer">
+                    ✕
+                </button>
+
+            </div>
+
+
+
+            <!-- BODY -->
+
+            <div class="drawer-body">
+
+                <input type="hidden" id="room-id">
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Building *
+                    </label>
+
+                    <select id="room-building-id">
+
+                        <option value="">
+                            Select Building
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Floor *
+                    </label>
+
+                    <select id="room-floor-id">
+
+                        <option value="">
+                            Select Floor
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Room Type
+                    </label>
+
+                    <select id="room-room-type-id">
+
+                        <option value="">
+                            Select Room Type
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Room Code *
+                    </label>
+
+                    <input type="text" id="room-code">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Room Name
+                    </label>
+
+                    <input type="text" id="room-name">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOOTER -->
+
+            <div class="drawer-footer">
+
+                <button class="btn-secondary" id="btn-close-room-drawer">
+                    Cancel
+                </button>
+
+
+
+                <button class="btn-primary" id="btn-save-room">
+                    Save
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/js/portals/manager/master-data/rooms.js"></script>

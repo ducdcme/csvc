@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="color-scheme" content="light dark">
+
+    <title>SchoolCare Pro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-blue: #3272b3;
+            --accent-green: #a3d162;
+            --header-bg: #ffffff;
+            --body-bg: #f0f2f5;
+            --text-color: #1c1e21;
+            --search-bg: #f0f2f5;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --header-bg: #1a1a1a;
+                --body-bg: #121212;
+                --text-color: #e4e6eb;
+                --search-bg: #2d2d2d;
+            }
+
+            /* Cách giấu logo an toàn nhất cho Samsung Browser */
+            .logo-placeholder {
+                display: none !important;
+                visibility: hidden;
+                width: 0;
+            }
+
+            /* Hiện nội dung thay thế */
+            .dark-title {
+                display: block !important;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            background-color: var(--body-bg);
+            color: var(--text-color);
+            transition: 0.3s;
+        }
+
+        header {
+            background: var(--header-bg);
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dùng Background Image thay vì thẻ <img> */
+        .logo-placeholder {
+            width: 140px;
+            height: 30px;
+            background-image: url('LogoSchooCare2.png');
+            /* Thay link logo của bạn */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: left center;
+        }
+
+        /* Tiêu đề thay thế trong Dark Mode */
+        .dark-title {
+            display: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            flex-grow: 1;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 15px;
+            margin-left: auto;
+        }
+
+        .icon-link {
+            color: var(--text-color);
+            font-size: 20px;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: var(--header-bg);
+            display: flex;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        .nav-item {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            color: #888;
+            text-decoration: none;
+            font-size: 11px;
+        }
+
+        .nav-item.active {
+            color: var(--primary-blue);
+        }
+
+        .nav-item i {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo-placeholder"></div>
+
+        <div class="dark-title">
+            BẢNG ĐIỀU KHIỂN
+        </div>
+
+        <div class="header-right">
+            <a href="#" class="icon-link"><i class="far fa-bell"></i></a>
+            <a href="#" class="icon-link"><i class="far fa-user-circle"></i></a>
+        </div>
+    </header>
+
+    <div style="padding: 20px;">
+        <p>Giao diện đã tối ưu cho Samsung Browser.</p>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active"><i class="fas fa-home"></i>Trang chủ</a>
+        <a href="#" class="nav-item"><i class="fas fa-search"></i>Tra cứu</a>
+        <a href="#" class="nav-item"><i class="fas fa-plus-circle"></i>Tạo mới</a>
+        <a href="#" class="nav-item"><i class="fas fa-cog"></i>Cài đặt</a>
+    </nav>
+
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!-- views/portals/manager/master-data/floors.ejs -->
+<div class="content">
+    <div class="manager-page">
+
+        <div class="manager-page-header">
+
+            <div>
+
+                <h1>
+                    Floors
+                </h1>
+
+                <p>
+                    Manage floors
+                </p>
+
+            </div>
+
+
+
+            <button class="btn-primary" id="btn-add-floor">
+                + Add Floor
+            </button>
+
+        </div>
+
+
+
+        <!-- FILTER -->
+
+        <div class="manager-filter-card">
+
+            <div class="filter-group">
+
+                <label>
+                    Building
+                </label>
+
+                <select id="filter-building-id">
+
+                    <option value="">
+                        Select Building
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TABLE -->
+
+        <div class="manager-table-card">
+
+            <table class="manager-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th width="80">
+                            STT
+                        </th>
+
+                        <th width="140">
+                            Code
+                        </th>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th width="120">
+                            Sort
+                        </th>
+
+                        <th width="220">
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="floor-table-body"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DRAWER -->
+
+    <div class="drawer" id="floor-drawer">
+
+        <div class="drawer-content">
+
+            <!-- HEADER -->
+
+            <div class="drawer-header">
+
+                <h2 id="floor-drawer-title">
+                    Create Floor
+                </h2>
+
+
+
+                <button class="drawer-close-btn" id="btn-close-floor-drawer">
+                    ✕
+                </button>
+
+            </div>
+
+
+
+            <!-- BODY -->
+
+            <div class="drawer-body">
+
+                <input type="hidden" id="floor-id">
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Building *
+                    </label>
+
+                    <select id="floor-building-id">
+
+                        <option value="">
+                            Select Building
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Floor Code *
+                    </label>
+
+                    <input type="text" id="floor-code">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Floor Name *
+                    </label>
+
+                    <input type="text" id="floor-name">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Sort Order
+                    </label>
+
+                    <input type="number" id="floor-sort-order" value="0">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOOTER -->
+
+            <div class="drawer-footer">
+
+                <button class="btn-secondary" id="btn-close-floor-drawer">
+                    Cancel
+                </button>
+
+
+
+                <button class="btn-primary" id="btn-save-floor">
+                    Save
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script src="/js/portals/manager/master-data/floors.js"></script>

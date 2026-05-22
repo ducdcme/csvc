@@ -1,0 +1,1079 @@
+  #incident-work-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+  }
+
+  #incident-work-list * {
+      box-sizing: border-box;
+  }
+
+  #incident-work-list .iw-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+  }
+
+  #incident-work-list .iw-page-title {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+  }
+
+  #incident-work-list .iw-page-subtitle {
+      margin: 6px 0 0;
+      opacity: 0.7;
+      font-size: 14px;
+  }
+
+  #incident-work-list .iw-toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+  }
+
+  #incident-work-list .iw-search-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 0 14px;
+      min-width: 280px;
+      height: 44px;
+  }
+
+  #incident-work-list .iw-search-box input {
+      border: none;
+      outline: none;
+      width: 100%;
+      background: transparent;
+  }
+
+  #incident-work-list .iw-btn {
+      border: none;
+      border-radius: 12px;
+      height: 44px;
+      padding: 0 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 600;
+  }
+
+  #incident-work-list .iw-btn-primary {
+      background: #111827;
+      color: #fff;
+  }
+
+  #incident-work-list .iw-btn-secondary {
+      background: #fff;
+      border: 1px solid #ddd;
+      color: #111827;
+  }
+
+  #incident-work-list .iw-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+  }
+
+  #incident-work-list .iw-summary-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid #ececec;
+      cursor: pointer;
+      transition: all 0.2s ease;
+  }
+
+  #incident-work-list .iw-summary-card:hover {
+      transform: translateY(-2px);
+  }
+
+  #incident-work-list .iw-summary-danger {
+      border-color: #fecaca;
+      background: #fff5f5;
+  }
+
+  #incident-work-list .iw-summary-label {
+      font-size: 13px;
+      opacity: 0.7;
+      margin-bottom: 10px;
+  }
+
+  #incident-work-list .iw-summary-value {
+      font-size: 32px;
+      font-weight: 700;
+  }
+
+  #incident-work-list .iw-filter-bar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+  }
+
+  #incident-work-list .iw-filter-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+  }
+
+  #incident-work-list .iw-filter-chip {
+      border: 1px solid #ddd;
+      background: #fff;
+      border-radius: 999px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+  }
+
+  #incident-work-list .iw-filter-chip.active {
+      background: #111827;
+      color: #fff;
+      border-color: #111827;
+  }
+
+  #incident-work-list .iw-filter-options {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+  }
+
+  #incident-work-list .iw-select {
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      padding: 0 12px;
+      background: #fff;
+  }
+
+  #incident-work-list .iw-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+  }
+
+  #incident-work-list .iw-list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+  }
+
+  #incident-work-list .iw-row {
+      background: #fff;
+      border: 1px solid #ececec;
+      border-radius: 18px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 2fr 1.2fr 1fr auto;
+      gap: 20px;
+      align-items: center;
+  }
+
+  #incident-work-list .iw-row.overdue {
+      border-color: #fca5a5;
+      background: #fffafa;
+  }
+
+  #incident-work-list .iw-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+  }
+
+  #incident-work-list .iw-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+  }
+
+  #incident-work-list .iw-meta-tag {
+      background: #f3f4f6;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 600;
+  }
+
+  #incident-work-list .iw-status-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      width: fit-content;
+  }
+
+  #incident-work-list .iw-status-open {
+      background: #dbeafe;
+      color: #1d4ed8;
+  }
+
+  #incident-work-list .iw-status-contracting {
+      background: #fef3c7;
+      color: #b45309;
+  }
+
+  #incident-work-list .iw-status-planning {
+      background: #ede9fe;
+      color: #6d28d9;
+  }
+
+  #incident-work-list .iw-status-progress {
+      background: #dcfce7;
+      color: #15803d;
+  }
+
+  #incident-work-list .iw-status-reviewing {
+      background: #fde68a;
+      color: #92400e;
+  }
+
+  #incident-work-list .iw-status-closed {
+      background: #e5e7eb;
+      color: #374151;
+  }
+
+  #incident-work-list .iw-phase-label {
+      font-size: 13px;
+      opacity: 0.7;
+      margin-bottom: 12px;
+  }
+
+  #incident-work-list .iw-progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #f3f4f6;
+      border-radius: 999px;
+      overflow: hidden;
+  }
+
+  #incident-work-list .iw-progress-fill {
+      height: 100%;
+      background: #111827;
+      border-radius: 999px;
+  }
+
+  #incident-work-list .iw-progress-text {
+      margin-top: 8px;
+      font-size: 12px;
+      opacity: 0.7;
+  }
+
+  #incident-work-list .iw-sla-block {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  }
+
+  #incident-work-list .iw-sla-item {
+      font-size: 13px;
+  }
+
+  #incident-work-list .iw-sla-label {
+      opacity: 0.6;
+      margin-bottom: 4px;
+  }
+
+  #incident-work-list .iw-overdue {
+      color: #dc2626;
+      font-weight: 700;
+  }
+
+  #incident-work-list .iw-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+  }
+
+  #incident-work-list .iw-primary-action {
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      background: #111827;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+  }
+
+  #incident-work-list .iw-dropdown {
+      position: relative;
+  }
+
+  #incident-work-list .iw-dropdown-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      background: #fff;
+      cursor: pointer;
+  }
+
+  #incident-work-list .iw-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #fff;
+      border: 1px solid #ececec;
+      border-radius: 12px;
+      min-width: 180px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      display: none;
+      z-index: 10;
+  }
+
+  #incident-work-list .iw-dropdown.open .iw-dropdown-menu {
+      display: block;
+  }
+
+  #incident-work-list .iw-dropdown-item {
+      width: 100%;
+      border: none;
+      background: #fff;
+      text-align: left;
+      padding: 12px 14px;
+      cursor: pointer;
+      font-size: 14px;
+  }
+
+  #incident-work-list .iw-dropdown-item:hover {
+      background: #f9fafb;
+  }
+
+  #incident-work-list .iw-dropdown-danger {
+      color: #dc2626;
+  }
+
+  #incident-work-list .iw-empty-state {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px dashed #ddd;
+      padding: 40px;
+      text-align: center;
+      opacity: 0.7;
+  }
+
+  @media (max-width: 1200px) {
+      #incident-work-list .iw-row {
+          grid-template-columns: 1fr;
+      }
+
+      #incident-work-list .iw-actions {
+          flex-direction: row;
+          justify-content: flex-end;
+      }
+  }
+
+  @media (max-width: 768px) {
+      #incident-work-list .iw-toolbar-right {
+          width: 100%;
+      }
+
+      #incident-work-list .iw-search-box {
+          min-width: unset;
+          width: 100%;
+      }
+
+      #incident-work-list .iw-toolbar-right .iw-btn,
+      #incident-work-list .iw-toolbar-right a {
+          flex: 1;
+          justify-content: center;
+      }
+
+      #incident-work-list .iw-actions {
+          width: 100%;
+          justify-content: space-between;
+      }
+  }
+
+  #incident-work-detail {
+      display: flex;
+      flex-direction: column;
+  }
+
+  #incident-work-detail * {
+      box-sizing: border-box;
+  }
+
+  #incident-work-detail .iwd-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) 360px;
+      gap: 20px;
+      align-items: start;
+  }
+
+  #incident-work-detail .iwd-main-column,
+  #incident-work-detail .iwd-side-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+  }
+
+  #incident-work-detail .iwd-panel {
+      background: #fff;
+      border-radius: 18px;
+      border: 1px solid #ececec;
+      padding: 22px;
+  }
+
+  #incident-work-detail .iwd-sticky-panel {
+      position: sticky;
+      top: 20px;
+  }
+
+  #incident-work-detail .iwd-header-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+  }
+
+  #incident-work-detail .iwd-page-label {
+      font-size: 13px;
+      opacity: 0.7;
+      margin-bottom: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+  }
+
+  #incident-work-detail .iwd-title {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.2;
+  }
+
+  #incident-work-detail .iwd-meta-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+  }
+
+  #incident-work-detail .iwd-meta-chip {
+      background: #f3f4f6;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 700;
+  }
+
+  #incident-work-detail .iwd-status-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+  }
+
+  #incident-work-detail .iwd-status-open {
+      background: #dbeafe;
+      color: #1d4ed8;
+  }
+
+  #incident-work-detail .iwd-status-contracting {
+      background: #fef3c7;
+      color: #b45309;
+  }
+
+  #incident-work-detail .iwd-status-planning {
+      background: #ede9fe;
+      color: #6d28d9;
+  }
+
+  #incident-work-detail .iwd-status-progress {
+      background: #dcfce7;
+      color: #15803d;
+  }
+
+  #incident-work-detail .iwd-status-reviewing {
+      background: #fde68a;
+      color: #92400e;
+  }
+
+  #incident-work-detail .iwd-status-closed {
+      background: #e5e7eb;
+      color: #374151;
+  }
+
+  #incident-work-detail .iwd-section-header {
+      margin-bottom: 16px;
+  }
+
+  #incident-work-detail .iwd-section-header h3,
+  #incident-work-detail .iwd-checklist-title {
+      margin: 0;
+      font-size: 18px;
+  }
+
+  #incident-work-detail .iwd-description {
+      line-height: 1.7;
+      white-space: pre-wrap;
+  }
+
+  #incident-work-detail .iwd-note-box {
+      margin-top: 18px;
+      padding: 16px;
+      background: #f9fafb;
+      border-radius: 14px;
+  }
+
+  #incident-work-detail .iwd-note-label {
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      opacity: 0.7;
+      text-transform: uppercase;
+  }
+
+  #incident-work-detail .iwd-checklist-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+  }
+
+  #incident-work-detail .iwd-checklist-summary {
+      margin-top: 8px;
+      font-size: 14px;
+      opacity: 0.7;
+  }
+
+  #incident-work-detail .iwd-progress-wrapper {
+      width: 220px;
+  }
+
+  #incident-work-detail .iwd-progress-value {
+      text-align: right;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 700;
+  }
+
+  #incident-work-detail .iwd-progress-bar {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #f3f4f6;
+  }
+
+  #incident-work-detail .iwd-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #111827;
+      border-radius: 999px;
+  }
+
+  #incident-work-detail .iwd-checklist-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+  }
+
+  #incident-work-detail .iwd-checklist-item {
+      border: 1px solid #ececec;
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+  }
+
+  #incident-work-detail .iwd-checklist-item.completed {
+      background: #f9fafb;
+      opacity: 0.75;
+  }
+
+  #incident-work-detail .iwd-checklist-left {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+  }
+
+  #incident-work-detail .iwd-check-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      flex-shrink: 0;
+  }
+
+  #incident-work-detail .iwd-check-pending {
+      background: #f3f4f6;
+      color: #6b7280;
+  }
+
+  #incident-work-detail .iwd-check-completed {
+      background: #dcfce7;
+      color: #15803d;
+  }
+
+  #incident-work-detail .iwd-check-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+  }
+
+  #incident-work-detail .iwd-check-status {
+      font-size: 13px;
+      opacity: 0.7;
+  }
+
+  #incident-work-detail .iwd-check-action {
+      border: none;
+      border-radius: 12px;
+      background: #111827;
+      color: #fff;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-weight: 600;
+      white-space: nowrap;
+  }
+
+  #incident-work-detail .iwd-check-action:disabled {
+      background: #d1d5db;
+      cursor: not-allowed;
+  }
+
+  #incident-work-detail .iwd-side-section+.iwd-side-section {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #ececec;
+  }
+
+  #incident-work-detail .iwd-side-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 16px;
+  }
+
+  #incident-work-detail .iwd-action-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+  }
+
+  #incident-work-detail .iwd-workflow-btn {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      background: #111827;
+      color: #fff;
+      padding: 14px;
+      cursor: pointer;
+      font-weight: 700;
+  }
+
+  #incident-work-detail .iwd-info-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+  }
+
+  #incident-work-detail .iwd-info-label {
+      font-size: 12px;
+      opacity: 0.6;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      font-weight: 700;
+  }
+
+  #incident-work-detail .iwd-info-value {
+      font-size: 14px;
+      font-weight: 600;
+  }
+
+  #incident-work-detail .iwd-overdue {
+      color: #dc2626;
+  }
+
+  #incident-work-detail .iwd-contractor-name {
+      margin-bottom: 14px;
+      font-size: 14px;
+      font-weight: 600;
+  }
+
+  #incident-work-detail .iwd-select {
+      width: 100%;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      padding: 0 12px;
+      background: #fff;
+  }
+
+  #incident-work-detail .iwd-empty-state {
+      border: 1px dashed #ddd;
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      opacity: 0.7;
+  }
+
+  @media (max-width: 1200px) {
+      #incident-work-detail .iwd-layout {
+          grid-template-columns: 1fr;
+      }
+
+      #incident-work-detail .iwd-sticky-panel {
+          position: static;
+      }
+  }
+
+  @media (max-width: 768px) {
+
+      #incident-work-detail .iwd-header-top,
+      #incident-work-detail .iwd-checklist-header,
+      #incident-work-detail .iwd-checklist-item {
+          flex-direction: column;
+          align-items: flex-start;
+      }
+
+      #incident-work-detail .iwd-progress-wrapper {
+          width: 100%;
+      }
+
+      #incident-work-detail .iwd-check-action {
+          width: 100%;
+      }
+  }
+
+  #incident-work-detail .iwd-checklist-planner {
+      margin-bottom: 24px;
+      padding: 20px;
+      border: 1px dashed #d1d5db;
+      border-radius: 18px;
+      background: #f9fafb;
+  }
+
+  #incident-work-detail .iwd-planner-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+  }
+
+  #incident-work-detail .iwd-planner-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+  }
+
+  #incident-work-detail .iwd-planner-subtitle {
+      font-size: 13px;
+      opacity: 0.7;
+  }
+
+  #incident-work-detail .iwd-add-step-btn,
+  #incident-work-detail .iwd-save-checklist-btn {
+      border: none;
+      border-radius: 12px;
+      background: #111827;
+      color: #fff;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: 700;
+  }
+
+  #incident-work-detail .iwd-planner-step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+  }
+
+  #incident-work-detail .iwd-planner-step {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+  }
+
+  #incident-work-detail .iwd-planner-step-index {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: #111827;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+  }
+
+  #incident-work-form * {
+      box-sizing: border-box;
+  }
+
+  #incident-work-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+  }
+
+  #incident-work-form .iwf-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
+  }
+
+  #incident-work-form .iwf-page-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.7;
+      margin-bottom: 10px;
+  }
+
+  #incident-work-form .iwf-title {
+      margin: 0;
+      font-size: 30px;
+  }
+
+  #incident-work-form .iwf-status-badge {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: #111827;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+  }
+
+  #incident-work-form .iwf-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) 360px;
+      gap: 20px;
+      align-items: start;
+  }
+
+  #incident-work-form .iwf-main-column,
+  #incident-work-form .iwf-side-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+  }
+
+  #incident-work-form .iwf-panel {
+      background: #fff;
+      border: 1px solid #ececec;
+      border-radius: 18px;
+      padding: 22px;
+  }
+
+  #incident-work-form .iwf-sticky-panel {
+      position: sticky;
+      top: 20px;
+  }
+
+  #incident-work-form .iwf-section-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+  }
+
+  #incident-work-form .iwf-form-group+.iwf-form-group {
+      margin-top: 18px;
+  }
+
+  #incident-work-form .iwf-label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 13px;
+      font-weight: 700;
+  }
+
+  #incident-work-form .iwf-input,
+  #incident-work-form .iwf-select,
+  #incident-work-form .iwf-textarea {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid #ddd;
+      padding: 14px;
+      background: #fff;
+      font: inherit;
+  }
+
+  #incident-work-form .iwf-textarea {
+      resize: vertical;
+  }
+
+  #incident-work-form .iwf-input[disabled],
+  #incident-work-form .iwf-select[disabled],
+  #incident-work-form .iwf-textarea[disabled] {
+      background: #f3f4f6;
+      cursor: not-allowed;
+      opacity: 0.75;
+  }
+
+  #incident-work-form .iwf-workflow-notice {
+      margin-top: 20px;
+      padding: 14px;
+      border-radius: 14px;
+      background: #f9fafb;
+      font-size: 13px;
+      line-height: 1.6;
+  }
+
+  #incident-work-form .iwf-action-bar {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+  }
+
+  #incident-work-form .iwf-btn {
+      flex: 1;
+      height: 48px;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 700;
+  }
+
+  #incident-work-form .iwf-btn-primary {
+      background: #111827;
+      color: #fff;
+  }
+
+  #incident-work-form .iwf-btn-secondary {
+      background: #f3f4f6;
+  }
+
+  @media (max-width: 1200px) {
+      #incident-work-form .iwf-layout {
+          grid-template-columns: 1fr;
+      }
+
+      #incident-work-form .iwf-sticky-panel {
+          position: static;
+      }
+  }
+
+  #incident-work-form .iwf-select {
+      width: 100%;
+      height: 54px;
+      border-radius: 14px;
+      border: 1px solid #ddd;
+      padding: 0 16px;
+      background: #fff;
+      font: inherit;
+      color: #111827;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      cursor: pointer;
+
+      background-image:
+          linear-gradient(45deg, transparent 50%, #6b7280 50%),
+          linear-gradient(135deg, #6b7280 50%, transparent 50%);
+
+      background-position:
+          calc(100% - 20px) calc(50% - 3px),
+          calc(100% - 14px) calc(50% - 3px);
+
+      background-size: 6px 6px;
+      background-repeat: no-repeat;
+  }
+
+  #incident-work-form .iwf-select:focus {
+      outline: none;
+      border-color: #111827;
+  }
+
+  #incident-work-form .iwf-select:disabled {
+      background-color: #f3f4f6;
+      cursor: not-allowed;
+      opacity: 0.75;
+  }
+
+  #incident-work-detail .iwd-check-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+  }
+
+  #incident-work-detail .iwd-check-edit,
+  #incident-work-detail .iwd-check-delete {
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+  }
+
+  #incident-work-detail .iwd-check-edit {
+      background: #eef2ff;
+      color: #3730a3;
+  }
+
+  #incident-work-detail .iwd-check-delete {
+      background: #fef2f2;
+      color: #b91c1c;
+  }
+  #incident-work-detail .iwd-check-attachments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+#incident-work-detail .iwd-check-image {
+    display: block;
+    width: 90px;
+    height: 90px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+#incident-work-detail .iwd-check-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+#incident-work-detail .iwd-check-file {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: #f3f4f6;
+    color: #111827;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}

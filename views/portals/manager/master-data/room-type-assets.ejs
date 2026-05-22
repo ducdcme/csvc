@@ -1,0 +1,93 @@
+<div class="content">
+    <!-- views/portals/manager/master-data/room-type-assets.ejs -->
+
+    <div class="manager-page">
+
+        <div class="manager-page-header">
+
+            <div>
+
+                <h1>
+                    Room Type Assets
+                </h1>
+
+                <p>
+                    Configure assets for each room type
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FILTER -->
+
+        <div class="manager-filter-card">
+
+            <div class="filter-group">
+
+                <label>
+                    Room Type
+                </label>
+
+                <select id="filter-room-type-id">
+
+                    <option value="">
+                        Select Room Type
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CONTENT -->
+
+        <div class="manager-table-card">
+
+            <table class="manager-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th width="80">
+                            STT
+                        </th>
+
+                        <th width="160">
+                            Code
+                        </th>
+
+                        <th>
+                            Asset Name
+                        </th>
+
+                        <th width="180">
+                            Group
+                        </th>
+
+                        <th width="140">
+                            Assigned
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="room-type-asset-table-body"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="/js/portals/manager/master-data/room-type-assets.js"></script>
+</div>

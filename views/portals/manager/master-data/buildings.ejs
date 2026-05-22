@@ -1,0 +1,173 @@
+<!-- views/portals/manager/master-data/buildings.ejs -->
+<div class="content">
+    <div class="manager-page">
+
+        <div class="manager-page-header">
+
+            <div>
+
+                <h1>
+                    Buildings
+                </h1>
+
+                <p>
+                    Manage buildings
+                </p>
+
+            </div>
+
+
+
+            <button class="btn btn-primary" id="btn-add-building">
+                + Add Building
+            </button>
+
+        </div>
+
+
+
+        <div class="manager-table-card">
+
+            <table class="manager-table">
+
+                <thead>
+
+                    <tr>
+                        <th width="80">
+                            STT
+                        </th>
+                        <th width="140">
+                            Code
+                        </th>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th width="120">
+                            Sort
+                        </th>
+
+                        <th width="220">
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="building-table-body"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DRAWER -->
+
+    <div class="drawer" id="building-drawer">
+
+        <div class="drawer-content">
+
+            <!-- HEADER -->
+
+            <div class="drawer-header">
+
+                <h2 id="building-drawer-title">
+                    Create Building
+                </h2>
+
+
+
+                <button class="drawer-close-btn" id="btn-close-building-drawer">
+                    ✕
+                </button>
+
+            </div>
+
+
+
+            <!-- BODY -->
+
+            <div class="drawer-body">
+
+                <input type="hidden" id="building-id">
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Building Code *
+                    </label>
+
+                    <input type="text" id="building-code">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Building Name *
+                    </label>
+
+                    <input type="text" id="building-name">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea id="building-description"></textarea>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Sort Order
+                    </label>
+
+                    <input type="number" id="building-sort-order" value="0">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOOTER -->
+
+            <div class="drawer-footer">
+
+                <button class="btn-secondary" id="btn-close-building-drawer">
+                    Cancel
+                </button>
+
+
+
+                <button class="btn-primary" id="btn-save-building">
+                    Save
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script src="/js/portals/manager/master-data/buildings.js"></script>

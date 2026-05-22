@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SchoolCare Stable</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* 1. MẶC ĐỊNH LUÔN LÀ LIGHT MODE */
+        :root {
+            --primary-blue: #3272b3;
+            --accent-green: #a3d162;
+            --header-bg: #ffffff;
+            --body-bg: #f0f2f5;
+            --text-color: #1c1e21;
+        }
+
+        /* 2. CHỈ KHI CÓ CLASS .dark-mode MỚI ĐỔI MÀU */
+        body.dark-mode {
+            --header-bg: #1a1a1a;
+            --body-bg: #121212;
+            --text-color: #e4e6eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            background-color: var(--body-bg);
+            color: var(--text-color);
+        }
+
+        header {
+            background: var(--header-bg);
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Xử lý Logo & Title */
+        .logo-img {
+            height: 30px;
+            display: block;
+        }
+
+        .dark-title {
+            display: none;
+            /* Mặc định ẩn */
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--accent-green);
+        }
+
+        /* QUY TẮC HIỂN THỊ KHI Ở DARK MODE */
+        body.dark-mode .logo-img {
+            display: none !important;
+        }
+
+        body.dark-mode .dark-title {
+            display: block !important;
+        }
+
+        /* Icon Header */
+        .header-right {
+            display: flex;
+            gap: 15px;
+            margin-left: auto;
+        }
+
+        .icon-link {
+            color: var(--text-color);
+            font-size: 20px;
+        }
+
+        /* Bottom Menu */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: var(--header-bg);
+            display: flex;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        .nav-item {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            color: #888;
+            text-decoration: none;
+            font-size: 11px;
+        }
+
+        .nav-item.active {
+            color: var(--primary-blue);
+        }
+
+        .nav-item i {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+
+<body id="mainBody">
+
+    <header>
+        <img src="LogoSchooCare2.png" alt="SchoolCare" class="logo-img">
+        <div class="dark-title">SCHOOLCARE</div>
+
+        <div class="header-right">
+            <a href="#" class="icon-link"><i class="far fa-bell"></i></a>
+            <a href="#" class="icon-link"><i class="far fa-user-circle"></i></a>
+        </div>
+    </header>
+
+    <div style="padding: 20px;">
+        <div style="background: var(--header-bg); padding: 15px; border-radius: 10px;">
+            <h3>Trạng thái hệ thống</h3>
+            <p style="font-size: 14px; opacity: 0.8;">Website sẽ hiển thị Logo ở chế độ Sáng và ẩn đi ở chế độ Tối.</p>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active"><i class="fas fa-home"></i>Trang chủ</a>
+        <a href="#" class="nav-item"><i class="fas fa-search"></i>Tra cứu</a>
+        <a href="#" class="nav-item"><i class="fas fa-cog"></i>Cài đặt</a>
+    </nav>
+
+    <script>
+        function checkTheme() {
+            const body = document.getElementById('mainBody');
+            // Chỉ thêm class dark-mode nếu hệ thống thực sự đang yêu cầu tối
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                body.classList.add('dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+            }
+        }
+
+        // Chạy kiểm tra
+        checkTheme();
+
+        // Theo dõi thay đổi
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', checkTheme);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolCare Web App</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #3272b3;
+            --accent-green: #a3d162;
+            --bg-body: #f4f7f6;
+            --bg-card: #ffffff;
+            --text-main: #333333;
+            --header-bg: #ffffff;
+        }
+
+        /* Tự động phát hiện Dark Mode của hệ thống/trình duyệt */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #121212;
+                --bg-card: #1e1e1e;
+                --text-main: #e0e0e0;
+                --header-bg: #1e1e1e;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            transition: all 0.3s ease;
+        }
+
+        /* HEADER CẬP NHẬT */
+        header {
+            background: var(--header-bg);
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Xử lý Logo cho cả 2 chế độ */
+        .logo-box {
+            background: white;
+            /* Luôn giữ nền trắng nhỏ cho logo */
+            padding: 5px 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-box img {
+            height: 30px;
+            width: auto;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .header-actions i {
+            font-size: 20px;
+            color: var(--primary-blue);
+            cursor: pointer;
+            position: relative;
+        }
+
+        /* Chấm đỏ thông báo */
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: red;
+            border-radius: 50%;
+            width: 8px;
+            height: 8px;
+        }
+
+        /* MENU CHỨC NĂNG CHÍNH (BODY) */
+        .main-content {
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card i {
+            font-size: 28px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* BOTTOM NAVIGATION (THANH ĐIỀU HƯỚNG WEB) */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: var(--header-bg);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link {
+            text-align: center;
+            text-decoration: none;
+            color: #888;
+            font-size: 0.7rem;
+            flex: 1;
+        }
+
+        .nav-link.active {
+            color: var(--primary-blue);
+        }
+
+        .nav-link i {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo-box">
+            <img src="LogoSchooCare2.png" alt="SchoolCare">
+        </div>
+
+        <div class="header-actions">
+            <div style="position: relative;">
+                <i class="far fa-bell"></i>
+                <span class="badge"></span>
+            </div>
+            <i class="far fa-user-circle"></i>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <h2 class="section-title">Tính năng chính</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-book-reader" style="color: var(--primary-blue);"></i>
+                <span>Học tập</span>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-bus" style="color: var(--accent-green);"></i>
+                <span>Đưa đón</span>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-file-invoice-dollar" style="color: var(--primary-blue);"></i>
+                <span>Học phí</span>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-heartbeat" style="color: var(--accent-green);"></i>
+                <span>Sức khỏe</span>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="#" class="nav-link active">
+            <i class="fas fa-th-large"></i>
+            Trang chủ
+        </a>
+        <a href="#" class="nav-link">
+            <i class="fas fa-calendar-alt"></i>
+            Thời khóa biểu
+        </a>
+        <a href="#" class="nav-link">
+            <i class="fas fa-envelope"></i>
+            Tin nhắn
+        </a>
+        <a href="#" class="nav-link">
+            <i class="fas fa-cog"></i>
+            Cài đặt
+        </a>
+    </nav>
+
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!-- views/portals/manager/master-data/room-names.ejs -->
+
+<div class="manager-page">
+
+    <div class="manager-page-header">
+
+        <div>
+
+            <h1>
+                Room Names By Year
+            </h1>
+
+            <p>
+                Manage academic room names
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- FILTER -->
+
+    <div class="manager-filter-card">
+
+        <div class="filter-grid">
+
+            <div class="filter-group">
+
+                <label>
+                    Academic Year
+                </label>
+
+                <input type="text" id="filter-academic-year" value="">
+
+            </div>
+
+
+
+            <div class="filter-group">
+
+                <label>
+                    Building
+                </label>
+
+                <select id="filter-building-id">
+
+                    <option value="">
+                        Select Building
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="filter-group">
+
+                <label>
+                    Floor
+                </label>
+
+                <select id="filter-floor-id">
+
+                    <option value="">
+                        Select Floor
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="filter-group">
+
+                <label>&nbsp;</label>
+
+                <button class="btn btn-primary" id="btn-load-room-names">
+                    Load Data
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TABLE -->
+
+    <div class="manager-table-card">
+
+        <table class="manager-table">
+
+            <thead>
+
+                <tr>
+
+                    <th width="80">
+                        STT
+                    </th>
+
+                    <th width="160">
+                        Room Code
+                    </th>
+
+                    <th width="180">
+                        Building
+                    </th>
+
+                    <th width="120">
+                        Floor
+                    </th>
+
+                    <th>
+                        Room Name
+                    </th>
+
+                    <th width="160">
+                        Actions
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="room-name-table-body"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+
+<script src="/js/portals/manager/master-data/room-names.js"></script>

@@ -1,0 +1,337 @@
+<!-- views/portals/manager/users/users.ejs -->
+<div class="content">
+    <div class="manager-page">
+
+        <!-- PAGE HEADER -->
+
+        <div class="manager-page-header">
+
+            <div>
+
+                <h1>
+                    Users
+                </h1>
+
+                <p>
+                    Manage system users
+                </p>
+
+            </div>
+
+
+
+            <button class="btn-primary" id="btn-add-user">
+                + Add User
+            </button>
+
+        </div>
+
+
+
+        <!-- FILTER -->
+
+        <div class="manager-filter-card">
+
+            <div class="filter-grid">
+
+                <div class="filter-group">
+
+                    <label>
+                        Keyword
+                    </label>
+
+                    <input type="text" id="filter-keyword" placeholder="Search...">
+
+                </div>
+
+
+
+                <div class="filter-group">
+
+                    <label>
+                        Role
+                    </label>
+
+                    <select id="filter-role-id">
+
+                        <option value="">
+                            All Roles
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="filter-group">
+
+                    <label>
+                        Status
+                    </label>
+
+                    <select id="filter-active">
+
+                        <option value="">
+                            All
+                        </option>
+
+                        <option value="true">
+                            Active
+                        </option>
+
+                        <option value="false">
+                            Inactive
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TABLE -->
+
+        <div class="manager-table-card">
+
+            <table class="manager-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th width="80">
+                            STT
+                        </th>
+
+                        <th width="160">
+                            Username
+                        </th>
+
+                        <th width="200">
+                            Full Name
+                        </th>
+
+                        <th width="220">
+                            Roles
+                        </th>
+
+                        <th width="220">
+                            Campuses
+                        </th>
+
+                        <th width="180">
+                            Last Login
+                        </th>
+
+                        <th width="120">
+                            Status
+                        </th>
+
+                        <th width="280">
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="user-table-body"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DRAWER -->
+
+    <div class="drawer" id="user-drawer">
+
+        <div class="drawer-content lg">
+
+            <!-- HEADER -->
+
+            <div class="drawer-header">
+
+                <h2 id="user-drawer-title">
+                    Create User
+                </h2>
+
+
+
+                <button class="drawer-close-btn" id="btn-close-user-drawer">
+                    ✕
+                </button>
+
+            </div>
+
+
+
+            <!-- BODY -->
+
+            <div class="drawer-body">
+
+                <input type="hidden" id="user-id">
+
+
+
+                <!-- BASIC -->
+
+                <div class="form-section">
+
+                    <div class="form-section-title">
+                        Basic Information
+                    </div>
+
+
+
+                    <div class="form-grid-2">
+
+                        <div class="form-group">
+
+                            <label>
+                                Username *
+                            </label>
+
+                            <input type="text" id="user-username">
+
+                        </div>
+
+
+
+                        <div class="form-group" id="password-group">
+
+                            <label>
+                                Password *
+                            </label>
+
+                            <input type="password" id="user-password">
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Full Name *
+                            </label>
+
+                            <input type="text" id="user-full-name">
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Email
+                            </label>
+
+                            <input type="text" id="user-email">
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Phone
+                            </label>
+
+                            <input type="text" id="user-phone">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ROLES -->
+
+                <div class="form-section">
+
+                    <div class="form-section-title">
+                        Roles
+                    </div>
+
+
+
+                    <div class="checkbox-grid" id="role-checkbox-list"></div>
+
+                </div>
+
+
+
+                <!-- CAMPUSES -->
+
+                <div class="form-section">
+
+                    <div class="form-section-title">
+                        Campuses:
+                    </div>
+
+                    <div class="checkbox-grid" id="campus-checkbox-list"></div>
+
+                </div>
+
+
+
+                <!-- STATUS -->
+
+                <div class="form-section">
+
+                    <div class="form-section-title">
+                        Status
+                    </div>
+
+
+
+                    <label class="switch">
+
+                        <input type="checkbox" id="user-active" checked>
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOOTER -->
+
+            <div class="drawer-footer">
+
+                <button class="btn-secondary" id="btn-close-user-drawer">
+                    Cancel
+                </button>
+
+
+
+                <button class="btn-primary" id="btn-save-user">
+                    Save
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script src="/js/portals/manager/users/users.js"></script>

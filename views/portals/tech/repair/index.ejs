@@ -1,0 +1,86 @@
+<div class="content">
+
+    <%- include('../../../partials/page-header', { title: 'Báo hỏng & sửa chữa' , subtitle: 'Danh sách sự cố cần xử lý'
+        , breadcrumb: ' ' }) %>
+
+        <!-- FILTER -->
+        <div class="card">
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <div style="margin-right: auto;"><button class="btn btn-primary" onclick="goCreateRepair()">
+                        + Tạo yêu cầu
+                    </button>
+                    <label style="margin-left:10px;">
+                        <input type="checkbox" id="workModeToggle" checked onchange="toggleWorkMode(this.checked)">
+                        Work/Filter Mode
+                    </label>
+                </div>
+                <input type="text" id="searchInput" placeholder="Tìm kiếm theo tiêu đề, phòng...">
+
+
+                <div id="statusFilter"></div>
+
+            </div>
+
+        </div>
+
+        <!-- LIST -->
+        <div id="repairList"></div>
+        <div id="completedSection" class="card"></div>
+        <!-- PAGINATION -->
+        <div id="pagination" class="pagination"></div>
+
+</div>
+<div id="detailModal" class="modal hidden">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <div id="detailContent"></div>
+    </div>
+</div>
+
+<div id="imageViewer" class="modal hidden" onclick="closeImageViewer()">
+    <img id="viewerImg" class="viewer-img">
+</div>
+
+<script src="/js/portals/tech/repair/repairs.js"></script>
+<style>
+    .completed-list {
+        margin-top: 10px;
+    }
+
+    .completed-row {
+        display: grid;
+        grid-template-columns: 150px 1fr 90px 70px;
+        gap: 10px;
+
+        align-items: center;
+
+        padding: 6px 0;
+        border-bottom: 1px dashed #ddd;
+
+        font-size: 14px;
+    }
+
+    .c-room {
+        font-weight: 600;
+    }
+
+    .c-status {
+        color: #16a34a;
+        font-weight: 500;
+    }
+
+    .c-asset {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .c-time {
+        text-align: right;
+        color: #888;
+    }
+
+    .completed-row:hover {
+        background: #f9fafb;
+    }
+</style>

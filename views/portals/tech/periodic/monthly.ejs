@@ -1,0 +1,96 @@
+<div class="content dashboard-container">
+
+    <div id="monthlyHeader"></div>
+
+    <div id="monthlyList"></div>
+
+</div>
+
+<script src="/js/portals/tech/periodic/monthly.js"></script>
+<style>
+    /* ===== MONTHLY ===== */
+
+    .monthly-header {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    .monthly-header .title {
+        font-weight: 600;
+    }
+
+    .monthly-header .progress {
+        font-size: 14px;
+        color: #444;
+    }
+
+    .monthly-header .overdue {
+        font-size: 13px;
+        color: #d00;
+    }
+
+    .monthly-group {
+        margin-bottom: 16px;
+    }
+
+    .group-title {
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
+
+    .monthly-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 10px 8px;
+        border-bottom: 1px solid #eee;
+
+        background: #fff;
+    }
+
+    /* LEFT */
+    .item-left {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    /* ICON */
+    .icon {
+        font-size: 14px;
+        width: 18px;
+        text-align: center;
+    }
+
+    /* TITLE */
+    .title {
+        font-size: 14px;
+    }
+
+    /* DATE */
+    .item-right {
+        font-size: 12px;
+        color: #888;
+    }
+
+    /* DONE */
+    .monthly-item.done .title {
+        color: #999;
+        text-decoration: line-through;
+    }
+
+    /* OVERDUE */
+    .monthly-item.overdue .title {
+        color: #d00;
+    }
+
+    .monthly-item.overdue .icon {
+        color: #d00;
+    }
+
+    .item-meta {
+        font-size: 12px;
+        color: #666;
+    }
+</style>

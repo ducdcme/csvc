@@ -1,0 +1,227 @@
+<div class="content">
+    <div id="incident-work-detail">
+
+        <div class="iwd-layout">
+
+            <div class="iwd-main-column">
+
+                <div class="iwd-panel iwd-header-panel">
+                    <div class="iwd-header-top">
+                        <div>
+                            <div class="iwd-page-label">
+                                Incident Work
+                            </div>
+
+                            <h1 class="iwd-title" id="iwd-title">
+                                Loading...
+                            </h1>
+                        </div>
+
+                        <div id="iwd-status-badge"></div>
+                    </div>
+
+                    <div class="iwd-meta-row">
+                        <div class="iwd-meta-chip" id="iwd-work-type">
+                            -
+                        </div>
+
+                        <div class="iwd-meta-chip" id="iwd-work-group">
+                            -
+                        </div>
+
+                        <div class="iwd-meta-chip" id="iwd-incident-id">
+                            -
+                        </div>
+                    </div>
+                </div>
+
+                <div class="iwd-panel">
+                    <div class="iwd-section-header">
+                        <h3>Description</h3>
+                    </div>
+
+                    <div class="iwd-description" id="iwd-description">
+                        -
+                    </div>
+
+                    <div class="iwd-note-box" id="iwd-note-box">
+                        <div class="iwd-note-label">Note</div>
+                        <div id="iwd-note">-</div>
+                    </div>
+                </div>
+
+                <div class="iwd-panel">
+
+                    <div class="iwd-checklist-header">
+                        <div>
+                            <h3 class="iwd-checklist-title">
+                                Checklist Workspace
+                            </h3>
+
+                            <div class="iwd-checklist-summary" id="iwd-checklist-summary">
+                                0 / 0 completed
+                            </div>
+                        </div>
+
+                        <div class="iwd-progress-wrapper">
+                            <div class="iwd-progress-value" id="iwd-progress-value">
+                                0%
+                            </div>
+
+                            <div class="iwd-progress-bar">
+                                <div class="iwd-progress-fill" id="iwd-progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="iwd-checklist-planner" id="iwd-checklist-planner">
+
+                        <div class="iwd-planner-header">
+                            <div>
+                                <div class="iwd-planner-title">
+                                    Checklist Planning
+                                </div>
+
+                                <div class="iwd-planner-subtitle">
+                                    Create execution steps before starting work
+                                </div>
+                            </div>
+
+                            <button type="button" class="iwd-add-step-btn" id="iwd-add-step-btn">
+                                + Add Step
+                            </button>
+                        </div>
+
+                        <div id="iwd-planner-steps"></div>
+
+                        <div class="iwd-planner-actions">
+                            <button type="button" class="iwd-save-checklist-btn" id="iwd-save-checklist-btn">
+                                Save Checklist
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div id="iwd-checklist-container">
+                        <div class="iwd-empty-state">
+                            Loading checklist...
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="iwd-side-column">
+
+                <div class="iwd-panel iwd-sticky-panel">
+
+                    <div class="iwd-side-section">
+                        <div class="iwd-side-title">
+                            Workflow Actions
+                        </div>
+
+                        <div class="iwd-action-list" id="iwd-workflow-actions">
+                        </div>
+                    </div>
+
+                    <div class="iwd-side-section">
+                        <div class="iwd-side-title">
+                            SLA Information
+                        </div>
+
+                        <div class="iwd-info-grid">
+
+                            <div class="iwd-info-item">
+                                <div class="iwd-info-label">
+                                    Start Date
+                                </div>
+
+                                <div class="iwd-info-value" id="iwd-start-date">
+                                    -
+                                </div>
+                            </div>
+
+                            <div class="iwd-info-item">
+                                <div class="iwd-info-label">
+                                    Due Date
+                                </div>
+
+                                <div class="iwd-info-value" id="iwd-due-date">
+                                    -
+                                </div>
+                            </div>
+
+                            <div class="iwd-info-item">
+                                <div class="iwd-info-label">
+                                    SLA Status
+                                </div>
+
+                                <div class="iwd-info-value" id="iwd-overdue-status">
+                                    -
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="iwd-side-section" id="iwd-contractor-section">
+                        <div class="iwd-side-title">
+                            Contractor
+                        </div>
+
+                        <div class="iwd-contractor-name" id="iwd-contractor-name">
+                            -
+                        </div>
+
+                        <select id="iwd-contractor-select" class="iwd-select">
+                            <option value="">
+                                Select Contractor
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="iwd-side-section">
+                        <div class="iwd-side-title">
+                            Metadata
+                        </div>
+
+                        <div class="iwd-info-grid">
+
+                            <div class="iwd-info-item">
+                                <div class="iwd-info-label">
+                                    Created At
+                                </div>
+
+                                <div class="iwd-info-value" id="iwd-created-at">
+                                    -
+                                </div>
+                            </div>
+
+                            <div class="iwd-info-item">
+                                <div class="iwd-info-label">
+                                    Approved By
+                                </div>
+
+                                <div class="iwd-info-value" id="iwd-approved-by">
+                                    -
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="imageViewer" class="preview-modal" onclick="closeImageViewer()">
+    <img id="viewerImg"/>
+</div>
+<link rel="stylesheet" href="/css/incident-manage.css">
+<script src="/js/portals/manager/incident-work/detail.js"></script>
