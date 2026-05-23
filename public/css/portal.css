@@ -715,9 +715,11 @@
      margin-top: 12px;
      background: #16a34a;
      color: white;
-     padding: 12px;
+     padding: 16px;
      border-radius: 10px;
      border: none;
+     font-size: 17px;
+     font-weight: 600;
  }
 
  textarea {
@@ -1419,7 +1421,136 @@
      background: #dc2626;
      color: #fff;
  }
+ /* =========================================================
+   TECH REPAIR FORM
+========================================================= */
+#formSection h3{
+            margin: 0;
+            font-size: 22px;
+            color: #1c1e21;
+            font-weight: 700;
+}
+#formSection .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+#formSection .btn-back {
+            background: #f1f2f6;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 10px;
+            color: #606770;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+#formSection .info-box {
+            background: #f8fafc;
+            border-left: 5px solid #2ecc71;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+#formSection .info-box p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #4a5568;
+        }
+#formSection .form-group {
+            margin-bottom: 20px;
+        }
 
+#formSection label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1c1e21;
+        }
+
+#formSection .input-field {
+            width: 100%;
+            padding: 14px;
+            border: 1.5px solid #dddfe2;
+            border-radius: 12px;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+            -webkit-appearance: none;
+            transition: border-color 0.2s;
+        }
+
+#formSection .input-field:focus {
+            border-color: #2ecc71;
+        }
+
+#formSection .qty-wrapper {
+            display: inline-flex;
+            align-items: center;
+            background: #f1f2f6;
+            padding: 6px;
+            border-radius: 14px;
+            gap: 12px;
+        }
+
+#formSection .qty-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: none;
+            background: #ffffff;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+#formSection .quantity {
+            width: 40px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            border: none;
+            background: transparent;
+            color: #1c1e21;
+        }
+
+#formSection textarea.input-field {
+            min-height: 110px;
+            resize: none;
+        }
+.repair-preview {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.preview-item {
+    position: relative;
+}
+
+.preview-item img {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.preview-item button {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    border: none;
+    background: red;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
  /* =========================================================
    SUMMER WORK
 ========================================================= */

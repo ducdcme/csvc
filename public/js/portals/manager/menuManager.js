@@ -92,7 +92,21 @@ const menu = [
             }
         ]
     },
+ {
+        label: 'Quản lý Nhà thầu',
+        icon: '🏗️',
+        children: [
 
+            {
+                label: 'Danh sách nhà thầu',
+                path: '/manager/contractors'
+            },
+            {
+                label: 'Thêm mới Nhà thầu',
+                path: '/manager/contractors/create'
+            }
+        ]
+    },
     {
         label: 'Import',
         icon: '📥',

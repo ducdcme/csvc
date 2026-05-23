@@ -214,6 +214,8 @@ exports.createRepairByTech = async (req) => {
         room_id,
         asset_type_id,
         issue_description,
+        quantity,
+        rp_source,
         attachments
     } = req.body
 
@@ -233,7 +235,8 @@ exports.createRepairByTech = async (req) => {
             room_id,
             asset_type_id,
             issue_description,
-            rp_source: 'user', // 🔥 chuẩn hóa
+            quantity,
+            rp_source, // 🔥 chuẩn hóa
             created_by_user_id: userId
         })
 

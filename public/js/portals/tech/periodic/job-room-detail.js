@@ -9,6 +9,11 @@ let state = {
 };
 
 let selectedFiles = [];
+let repairFiles = {}; 
+// {
+//   assetId: [File, File]
+// }
+let isSubmittingRepair = {};
 /* ================= INIT ================= */
 function getJobId() {
     const p = window.location.pathname.split('/');
@@ -237,27 +242,34 @@ function renderAssets() {
             const form = document.createElement('div');
             form.className = 'repair-form';
 
-            form.innerHTML = `
-        <div class="repair-title">
-          ${state.selectedRoom.room_code} - ${a.name}
+            form.innerHTML = `<div id="formSection">
+        <div class="repair-title"><p>
+          ${state.selectedRoom.room_code} - ${a.name}</p>
         </div>
-
-        <textarea id="desc-${a.id}" placeholder="Mô tả lỗi"></textarea>
-
+        <div class="form-group">
+            <button type="button" class="qty-btn" onclick="changeValue(-1,'qty-${a.id}')">−</button>
+            <input id="qty-${a.id}" type="number" value="1" class="quantity" readonly>
+            <button type="button" class="qty-btn" onclick="changeValue(1,'qty-${a.id}')">+</button>
+        </div>
+        <div class="form-group">
+            <textarea id="desc-${a.id}" placeholder="Mô tả lỗi"></textarea>
+        </div>
+        </div>   
         <div class="repair-actions">
           <div class="upload-box" onclick="triggerUpload('file-${a.id}')">
             + Thêm ảnh
           </div>
-          <input type="file" id="file-${a.id}" hidden>
-
-          <button class="btn btn-success" onclick="submitRepair(${a.id})">
+          <input type="file" id="file-${a.id}"  accept="image/*" multiple hidden>
+          <div id="preview-${a.id}" class="repair-preview"></div> 
+          <button id="submit-repair-${a.id}" class="btn btn-success" onclick="submitRepair(${a.id})">
             Lưu thông tin báo lỗi
           </button>
         </div>
       `;
 
             el.appendChild(form);
-
+            bindRepairFileInput(a.id);
+            renderRepairPreview(a.id);
             setTimeout(() => {
                 form.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 100);
@@ -289,25 +301,70 @@ function openRepair(assetId) {
 }
 async function submitRepair(assetId) {
 
-    const desc = document.getElementById(`desc-${assetId}`).value;
-    if (!desc) {
-        return showError('Nhập mô tả lỗi');
+    if (isSubmittingRepair[assetId]) {
+        return;
     }
-    await api('/user/repairs/create', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            room_id: state.selectedRoom.room_id,
-            asset_type_id: assetId,
-            issue_description: desc
-        })
-    });
 
-    state.repaired[assetId] = true;
-    state.openAssetId = null;
-    showSuccess('Đã báo lỗi thiết bị');
-    renderAssets();
+    const btn = document.getElementById(`submit-repair-${assetId}`);
 
+    try {
+
+        isSubmittingRepair[assetId] = true;
+
+        btn.disabled = true;
+        btn.innerText = 'Đang gửi...';
+
+        const qty = document.getElementById(`qty-${assetId}`).value;
+
+        if (!qty) {
+            return showError('Hãy nhập số lượng');
+        }
+
+        const desc = document.getElementById(`desc-${assetId}`).value;
+
+        if (!desc) {
+            return showError('Nhập mô tả lỗi');
+        }
+
+        const fileIds = await uploadRepairFiles(assetId);
+
+        await api('/user/repairs/create', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                room_id: state.selectedRoom.room_id,
+                asset_type_id: assetId,
+                issue_description: desc,
+                quantity: qty,
+                rp_source: "jr",
+                attachments: fileIds.map(id => ({
+                    file_id: id
+                }))
+            })
+        });
+
+        delete repairFiles[assetId];
+
+        state.repaired[assetId] = true;
+        state.openAssetId = null;
+
+        showSuccess('Đã báo lỗi thiết bị');
+
+        renderAssets();
+
+    } catch (err) {
+
+        showError(err.message || 'Có lỗi xảy ra');
+
+    } finally {
+
+        isSubmittingRepair[assetId] = false;
+
+        if (btn) {
+            btn.disabled = false;
+            btn.innerText = 'Lưu thông tin báo lỗi';
+        }
+    }
 }
 
 /* ================= DONE ROOM ================= */
@@ -516,5 +573,101 @@ function openPreview(src) {
 
     modal.onclick = () => {
         modal.classList.remove('show')
+    }
+}
+function changeValue(step,id)
+{
+    const input= document.getElementById(id)
+    let val = parseInt(input.value) || 1;
+            val += step;
+            if (val < 1) val = 1;
+            input.value = val;
+        
+}
+function bindRepairFileInput(assetId) {
+
+    const input = document.getElementById(`file-${assetId}`);
+
+    if (!input) return;
+
+    input.onchange = () => {
+
+        if (!repairFiles[assetId]) {
+            repairFiles[assetId] = [];
+        }
+
+        repairFiles[assetId].push(...Array.from(input.files));
+
+        renderRepairPreview(assetId);
+
+        input.value = '';
+    };
+}
+function renderRepairPreview(assetId) {
+
+    const el = document.getElementById(`preview-${assetId}`);
+
+    if (!el) return;
+
+    el.innerHTML = '';
+
+    const files = repairFiles[assetId] || [];
+
+    files.forEach((file, index) => {
+
+        const div = document.createElement('div');
+        div.className = 'preview-item';
+
+        const img = document.createElement('img');
+
+        img.src = URL.createObjectURL(file);
+
+        img.onclick = () => openPreview(img.src);
+
+        const btn = document.createElement('button');
+
+        btn.innerText = 'x';
+
+        btn.onclick = () => {
+
+            repairFiles[assetId].splice(index, 1);
+
+            renderRepairPreview(assetId);
+        };
+
+        div.appendChild(img);
+        div.appendChild(btn);
+
+        el.appendChild(div);
+    });
+}
+async function uploadRepairFiles(assetId) {
+
+    const files = repairFiles[assetId] || [];
+
+    if (!files.length) return [];
+
+    try {
+
+        const uploads = files.map(file => {
+
+            const formData = new FormData();
+
+            formData.append('file', file);
+
+            return api('/api/files/upload?module_name=repair', {
+                method: 'POST',
+                body: formData
+            }).then(res => res.data.file_id);
+
+        });
+
+        return await Promise.all(uploads);
+
+    } catch (err) {
+
+        showError('Upload file thất bại');
+
+        throw err;
     }
 }

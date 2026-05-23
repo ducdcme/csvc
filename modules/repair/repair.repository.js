@@ -13,6 +13,7 @@ exports.getRepairs = async (campusId) => {
       rr.issue_description,
       rr.reporter_label,
       rr.result_note,
+      rr.quantity,
       ra.file_id as file_id
     FROM repair_reports rr
     JOIN rooms r ON rr.room_id = r.id
@@ -197,12 +198,13 @@ exports.insertRepair = async (client, data) => {
             room_id,
             asset_type_id,
             issue_description,
+            quantity,
             report_source,
             created_by_user_id,
             status,
             created_at
         )
-        VALUES ($1,$2,$3,$4,$5,$6,'cho_tiep_nhan',NOW())
+        VALUES ($1,$2,$3,$4,$5,$6,$7,'cho_tiep_nhan',NOW())
         RETURNING id
     `
 
@@ -211,6 +213,7 @@ exports.insertRepair = async (client, data) => {
     data.room_id,
     data.asset_type_id,
     data.issue_description,
+    data.quantity,
     data.rp_source,
     data.created_by_user_id
   ])

@@ -177,8 +177,9 @@ function showForm() {
     document.getElementById('stepListContainer').style.display = 'none'
     document.getElementById('formSection').style.display = 'block'
 
-    document.getElementById('selectedInfo').innerText =
-        `${state.building.name} - Phòng: ${state.room.code} - ${state.room.name} - TB/CSVC: ${state.asset.name}`
+    document.getElementById('selectedInfo').innerHTML =
+        `<p>Vị trí: <b>${state.building.name} - Phòng: ${state.room.code} - ${state.room.name} </b></p>
+        <p>Thiết bị/CSVC: <b>${state.asset.name}</b></p>`
 }
 function backToRoom() {
     document.getElementById('formSection').style.display = 'none'
@@ -266,7 +267,9 @@ async function submit() {
         if (!state.asset) throw new Error('Chọn thiết bị')
 
         const desc = document.getElementById('desc').value.trim()
+        const qty = Number(document.getElementById('quantity').value.trim())
         if (!desc) throw new Error('Nhập mô tả')
+        if (!qty || qty <= 0) throw new Error('Nhập số lượng > 0')
 
         btn.disabled = true
         btn.innerText = 'Đang gửi...'
@@ -285,6 +288,8 @@ async function submit() {
                 room_id: state.room.id,
                 asset_type_id: state.asset.id,
                 issue_description: desc,
+                quantity: qty,
+                rp_source:"user",
                 attachments: fileIds.map(id => ({ file_id: id }))
             })
         })
@@ -340,7 +345,12 @@ function bindSearch() {
 
             const results = state.rooms
                 .filter(r => r.searchText.includes(keyword))
-                .slice(0, 6)
+                .sort((a, b) => {
+                  const indexA = a.searchText.indexOf(keyword);
+                  const indexB = b.searchText.indexOf(keyword);
+                  return indexA - indexB; 
+                 })
+                .slice(0, 15)
 
             results.forEach(r => {
 
@@ -402,4 +412,12 @@ function formatRoom(r) {
 function triggerUpload(id) {
     document.getElementById(id).click();
 }
+  // Hàm tăng giảm số lượng
+function changeValue(step) {
+            const input = document.getElementById('quantity');
+            let val = parseInt(input.value) || 1;
+            val += step;
+            if (val < 1) val = 1;
+            input.value = val;
+        }
 document.addEventListener('DOMContentLoaded', init)

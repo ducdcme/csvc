@@ -2,7 +2,7 @@
 
     <%- include('../../../partials/page-header', { title: 'Báo hỏng' , subtitle: 'Gửi yêu cầu tới bộ phận kỹ thuật' ,
         breadcrumb: 'Trang chủ / Báo hỏng cơ sở vật chất' }) %>
-        <div class="container">
+        <div class="container" id="repairContainer">
 
             <div id="breadcrumb" class="stepbar">
                 📍 Chọn tòa nhà
@@ -24,21 +24,28 @@
 
             <!-- FORM -->
             <div class="card" id="formSection" style="display:none">
-
-                <h3>Mô tả sự cố hoặc <a href="javascript:backToRoom()"><button class="change-room">← Chọn
-                            lại</button></a></h3>
-
-                <div id="selectedInfo" style="margin-bottom:8px;color:#64748b"></div>
-
-
-                <textarea id="desc" placeholder="Mô tả chi tiết sự cố..."></textarea>
-                <div class="upload-box" onclick="triggerUpload('fileInput')">
-                    + Thêm ảnh
+                <div class="header">
+                    <h3>Mô tả sự cố </h3><button class="btn-back" onclick="backToRoom()">← Chọn
+                            lại</button></a>
                 </div>
-                <input type="file" id="fileInput" multiple hidden>
-
+                <div id="selectedInfo" class="info-box">123</div>
+                <div class="form-group">
+                    <label for="quantity">Số lượng</label>
+                    <div class="qty-wrapper">
+                         <button type="button" class="qty-btn" onclick="changeValue(-1)">−</button>
+                         <input class="input quantity" type="number" id="quantity" value="1"  readonly>
+                         <button type="button" class="qty-btn" onclick="changeValue(1)">+</button>
+                    </div>
+                 </div>     
+                <div class="form-group">
+                    <label>Chi tiết hư hỏng</label>
+                    <textarea id="desc" placeholder="Mô tả chi tiết sự cố..."></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="upload-box" onclick="triggerUpload('fileInput')">+ Thêm ảnh</div>
+                    <input type="file" id="fileInput" multiple hidden>
+                </div>
                 <div id="preview"></div>
-
                 <button id="submitBtn" class="submit">
                     Gửi báo hỏng
                 </button>

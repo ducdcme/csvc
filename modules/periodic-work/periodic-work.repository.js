@@ -57,8 +57,8 @@ exports.getJobById = async (jobId, campusId) => {
       j.id,
       j.due_date,
       j.status,
-      j.work_group
-      i.work_type
+      j.work_group,
+      j.work_type,
       d.title as title,
       d.requires_result_file as requires_result_file,
 

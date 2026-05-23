@@ -214,7 +214,7 @@ function renderCard(r) {
 
                     <!-- ASSET -->
                     <div style="font-weight:600;">
-                        ${r.asset_type_name || ''}
+                        ${r.asset_type_name || ''} x ${r.quantity}
                     </div>
 
                     <!-- ISSUE -->
@@ -266,7 +266,7 @@ function renderTable(list, start) {
                     <td>${r.room_code} - ${r.room_name}</td>
 
                     <td>
-                        <div><b>${r.asset_type_name || ''}</b></div>
+                        <div><b>${r.asset_type_name || ''} x ${r.quantity}</b></div>
                         <div>${r.issue_description}</div>
                     </td>
 
@@ -322,7 +322,7 @@ function renderGroupedTable(groups) {
                         <td></td> <!-- bỏ room -->
 
                         <td>
-                            <div><b>${r.asset_type_name || ''}</b></div>
+                            <div><b>${r.asset_type_name || ''} x ${r.quantity}</b></div>
                             <div>${r.issue_description}</div>
                         </td>
 
