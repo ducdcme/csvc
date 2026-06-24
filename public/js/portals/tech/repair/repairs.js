@@ -137,21 +137,36 @@ function toggleWorkMode(val) {
 
 function groupByRoom(data) {
 
-    const map = {}
+const map = {}
 
-    data.forEach(r => {
+data.forEach(r => {
 
-        if (!map[r.room_code]) {
-            map[r.room_code] = {
-                label: `${r.room_code} - ${r.room_name}`,
-                items: []
-            }
+    if (!map[r.room_code]) {
+        map[r.room_code] = {
+            label: `${r.room_code} - ${r.room_name}`,
+            items: []
         }
+    }
 
-        map[r.room_code].items.push(r)
-    })
+    map[r.room_code].items.push(r)
+})
 
-    return Object.values(map)
+// 🔥 sort item trong từng room: mới nhất lên đầu
+Object.values(map).forEach(group => {
+    group.items.sort(
+        (a, b) => new Date(b.created_at) - new Date(a.created_at)
+    )
+
+    // lưu thời gian mới nhất của room
+    group.latestTime = new Date(group.items[0].created_at)
+})
+
+// 🔥 sort room theo lỗi mới nhất
+return Object.values(map).sort(
+    (a, b) => b.latestTime - a.latestTime
+)
+
+
 }
 
 

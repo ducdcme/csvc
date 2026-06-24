@@ -164,7 +164,12 @@ router.get('/contractors/create', (req, res) => {
         title: 'Thêm nhà thầu mới'
     });
 });
-
+router.get('/contractors/edit/:id', (req, res) => {
+    res.render('portals/manager/contractors/form', {
+        layout: 'layouts/adminportal',
+        title: 'Cập nhật nhà thầu'
+    });
+});
 /**
  * Import from Locations Excell
  */

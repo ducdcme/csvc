@@ -96,7 +96,7 @@ async function uploadFiles() {
         const fd = new FormData();
         fd.append('file', f);
 
-        return api('/api/files/upload?module_name=periodic_work', {
+        return api('/api/files/upload?module_name=periodic', {
             method: 'POST',
             body: fd
         }).then(r => r.data.file_id);

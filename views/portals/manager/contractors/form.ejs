@@ -1,26 +1,115 @@
 <div class="content">
-<h2>Create Contractor</h2>
 
-<div>
-    <input id="name" placeholder="Name" />
+<div id="contractor-form">
+
+    <h2 id="page-title">
+        Contractor
+    </h2>
+
+    <input
+        type="hidden"
+        id="id" />
+
+    <div>
+
+        <label>
+            Contractor Name *
+        </label>
+
+        <input
+            id="name"
+            type="text" />
+
+    </div>
+
+    <div>
+
+        <label>
+            Address
+        </label>
+
+        <input
+            id="address"
+            type="text" />
+
+    </div>
+
+    <div>
+
+        <label>
+            Contact 1 *
+        </label>
+
+        <input
+            id="contact"
+            type="text" />
+
+    </div>
+
+    <div>
+
+        <label>
+            Phone 1 *
+        </label>
+
+        <input
+            id="phone"
+            type="tel" />
+
+    </div>
+
+    <div>
+
+        <label>
+            Contact 2
+        </label>
+
+        <input
+            id="contact2"
+            type="text" />
+
+    </div>
+
+    <div>
+
+        <label>
+            Phone 2
+        </label>
+
+        <input
+            id="phone2"
+            type="tel" />
+
+    </div>
+
+    <div>
+
+        <label>
+            Type
+        </label>
+
+        <select id="type">
+
+            <option value="EXTERNAL">
+                External
+            </option>
+
+            <option value="INTERNAL">
+                Internal
+            </option>
+
+        </select>
+
+    </div>
+
+    <div style="margin-top: 20px;">
+
+       <button id="contractor-save-btn" type="button" onclick="save()"> Save </button> <a id="contractor-cancel-btn" href="/manager/contractors"> Cancel </a>
+    </div>
+
 </div>
 
-<div>
-    <input id="address" placeholder="Address" />
+
 </div>
 
-<div>
-    <input id="contact" placeholder="Contact" />
-</div>
-
-<div>
-    <input id="phone" placeholder="Phone" />
-</div>
-
-<div>
-    <input id="type" placeholder="Type" />
-</div>
-
-<button onclick="create()">Create</button>
-</div>
 <script src="/js/portals/manager/contractors/form.js"></script>

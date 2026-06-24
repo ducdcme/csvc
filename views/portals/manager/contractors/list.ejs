@@ -1,7 +1,71 @@
 <div class="content">
-    <h2>Contractors</h2>
-    <a href="/manager/contractors/create">+ Create</a>
-    <div id="list"></div>
+
+
+<div id="contractor-page">
+
+    <div> 
+        <h2>Contractors</h2> 
+        <div id="contractor-summary"> Total: <span id="contractor-total"> 0 </span> </div> 
+    </div> 
+    <div id="contractor-toolbar-right"> 
+        <input id="contractor-search" type="text" placeholder="Search contractor..." />
+        <a id="contractor-create-btn" href="/manager/contractors/create"> + Add Contractor </a> 
+    </div>
+
+    <table id="contractor-table">
+
+        <thead>
+            <tr>
+                <th width="60"> No. </th> 
+                <th> Name </th> 
+                <th> Contact </th> 
+                <th> Phone </th> 
+                <th width="120"> Type </th> 
+                <th width="180"> Action </th>
+            </tr>
+        </thead>
+
+        <tbody id="contractor-body">
+        </tbody>
+
+    </table>
+
+</div>
+
+
+</div>
+<div  id="contractor-delete-modal" class="contractor-modal">
+
+
+<div class="contractor-modal-content">
+
+    <h3>
+        Delete Contractor
+    </h3>
+
+    <p>
+        Are you sure you want to delete this contractor?
+    </p>
+
+    <div class="contractor-modal-actions">
+
+        <button id="contractor-modal-cancel" type="button">
+
+            Cancel
+
+        </button>
+
+        <button id="contractor-modal-confirm" type="button">
+
+            Delete
+
+        </button>
+
+    </div>
+
+</div>
+
+
 </div>
 
 <script src="/js/portals/manager/contractors/list.js"></script>

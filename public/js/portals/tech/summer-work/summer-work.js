@@ -22,11 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function bindEvents() {
 
-    document.getElementById('filter-year')
-        .addEventListener(
-            'change',
-            loadDashboard
-        )
+    document.getElementById('filter-year').addEventListener('change',loadDashboard)
 
 }
 
@@ -76,14 +72,9 @@ function renderYearOptions() {
 
 async function loadDashboard() {
 
-    const year =
-        document.getElementById(
-            'filter-year'
-        ).value
+    const year =document.getElementById('filter-year').value
 
-    const response = await fetch(
-        `/user/dashboard/summer-work?year=${year}`
-    )
+    const response = await fetch(`/user/dashboard/summer-work?year=${year}`)
 
     const result = await response.json()
 
@@ -329,7 +320,7 @@ function renderDesktopRow(
 ) {
 
     return `
-        <div class="summer-table-row">
+        <div class="summer-table-row" onclick="redirectJob(${item.id}, '${item.source}')">
 
             <div>
                 ${index}
@@ -370,7 +361,7 @@ function renderDesktopRow(
 function renderMobileCard(item) {
 
     return `
-        <div class="summer-card">
+        <div class="summer-card" onclick="redirectJob(${item.id}, '${item.source}')">
 
             <div class="summer-card-title">
                 ${item.title}
@@ -496,8 +487,46 @@ function renderStatus(status) {
     `
 
 }
+async function redirectJob(jobId, source) {
 
+    if (source === 'INCIDENT') {
+        return window.location.href = `/tech/incident-work/${jobId}`;
+    }
 
+    if (source === 'PERIODIC') {
+
+        try {
+            const response = await fetch(`/user/periodic-work/jobs/${jobId}`);
+            const result = await response.json();
+
+            if (!result.success || !result.data) {
+                showError('Không tìm thấy công việc');
+                return;
+            }
+
+            switch (result.data.type) {
+                case 'inspection':
+                    return window.location.href =
+                        `/tech/periodic-work/${jobId}/rooms`;
+
+                case 'operation':
+                    return window.location.href =
+                        `/tech/periodic-work/${jobId}/submit-operation`;
+
+                case 'maintenance':
+                    return window.location.href =
+                        `/tech/periodic-work/${jobId}/submit-maintenance`;
+
+                default:
+                    showError('Loại công việc không hợp lệ');
+            }
+
+        } catch (err) {
+            console.error(err);
+            showError('Có lỗi xảy ra');
+        }
+    }
+}
 
 /*
 |--------------------------------------------------------------------------
