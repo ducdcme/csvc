@@ -19,12 +19,33 @@ exports.getOverdueJobs = async (campusId) => {
     const { rows } = await repo.getOverdueJobs(campusId);
     return rows;
 };
-
+//JOB DETAIL
 exports.getJobDetail = async (campusId, jobId) => {
-    const { rows } = await repo.getJobById(jobId, campusId);
-    return rows[0];
-};
 
+    const { rows } =
+        await repo.getJobById(jobId, campusId);
+
+    const job = rows[0];
+
+    if (!job) {
+        throw new Error('Job not found');
+    }
+
+    const { rows: files } =
+        await repo.getJobAttachments(jobId);
+
+    return {
+        ...job,
+
+        attachments: files.filter(
+            x => x.type === 'attachment'
+        ),
+
+        result_files: files.filter(
+            x => x.type === 'result'
+        )
+    };
+};
 // ================= JOB ROOMS =================
 
 /**
@@ -298,13 +319,24 @@ exports.getJobRoomsTree = async (jobId) => {
         const floor = building.floors.get(row.floor_id);
 
         // ===== ROOM =====
-        const room = {
-            job_room_id: row.job_room_id,
-            room_id: row.room_id,
-            room_code: row.room_code,
-            room_name: row.room_name,
-            status: row.is_done ? 'done' : 'pending'
-        };
+       const room = {
+
+                job_room_id: row.job_room_id,
+
+                room_id: row.room_id,
+
+                room_code: row.room_code,
+
+                room_name: row.room_name,
+
+                status: row.is_done ? 'done' : 'pending',
+
+                room_image_file_id: row.room_image_file_id,
+
+                note: row.note,
+                
+                error_asset_ids: row.error_asset_ids || []
+            };
 
         floor.rooms.push(room);
 
@@ -497,8 +529,13 @@ exports.doneJobRoom = async (jobId, jobRoomId, payload, userId) => {
         job_id: jobId,
         job_room_id: jobRoomId,
         room_id: jobRoom.room_id,
-        note: payload.note,
-        room_image_file_id: payload.room_image_file_id,
+
+        note: payload.note || null,
+
+        room_image_file_id: payload.room_image_file_id || null,
+
+        error_asset_ids: payload.error_asset_ids || [],
+
         created_by: userId
     });
 

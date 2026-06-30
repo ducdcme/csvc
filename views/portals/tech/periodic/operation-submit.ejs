@@ -1,16 +1,26 @@
 <div class="content mt-3">
 
     <!-- ===== JOB INFO ===== -->
-    <div class="card mb-3 p-3">
-        <h5 id="jobTitle">Đang tải...</h5>
+   <div class="card mb-3 p-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 id="jobTitle">Đang tải...</h5>
+
+            <span id="jobStatusBadge"
+                class="badge bg-success"
+                style="display:none">
+                ĐÃ HOÀN THÀNH
+            </span>
+        </div>
+
         <div class="text-muted">
             <div>Loại công việc: <span id="jobTypeName"></span></div>
             <div>Thời hạn hoàn thành: <span id="jobDue"></span></div>
         </div>
+
     </div>
 
     <!-- ===== ẢNH ===== -->
-    <div class="card mb-3 p-3">
+    <div id="attachmentSection" class="card mb-3 p-3">
         <h6>Ảnh thực hiện công việc</h6>
 
         <div class="text-muted mb-2" style="font-size:13px;">
@@ -41,7 +51,16 @@
             <textarea id="note" class="form-control"></textarea>
         </div>
     </div>
+<!-- VIEW SECTION -->
+    <div id="viewSection"
+        class="card mb-3 p-3"
+        style="display:none">
 
+        <h6>Ảnh thực hiện</h6>
+
+        <div id="viewAttachments"></div>
+
+    </div>
     <button id="submitBtn" class="btn btn-primary w-100" onclick="submitOperation()">Xác nhận & Hoàn thành</button>
 
 </div>

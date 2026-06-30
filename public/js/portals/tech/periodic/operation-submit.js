@@ -18,19 +18,28 @@ async function loadJobInfo() {
     document.getElementById('jobTypeName').innerText = job.type_name;
     document.getElementById('jobDue').innerText = formatDate(job.due_date);
 
-    // 🚨 FIX QUAN TRỌNG
-    if (job.status === 'done') {
-
-        const btn = document.getElementById('submitBtn');
-
-        btn.disabled = true;
-        btn.innerText = 'Đã hoàn thành';
-        btn.dataset.done = 'true';
-
-        showError('Công việc này đã hoàn thành');
-
+    if (job.status !== 'done') {
         return;
     }
+
+    // ===== VIEW MODE =====
+    document.getElementById('jobStatusBadge').style.display = '';
+
+    document.getElementById('submitBtn').style.display = 'none';
+
+    document.getElementById('attachmentSection').style.display = 'none';
+
+    document.getElementById('viewSection').style.display = '';
+
+    if (job.note) {
+            document.getElementById('noteWrap').style.display = 'block';
+            document.getElementById('note').value = job.note;
+        } else {
+            document.getElementById('noteWrap').style.display = 'none';
+        }
+    document.getElementById('note').disabled = true;
+
+    renderReadonlyAttachments(job.attachments || []);
 }
 
 /* ================= IMAGE ================= */
@@ -168,5 +177,49 @@ async function submitOperation() {
         }
     }
 }
+function renderReadonlyAttachments(files) {
 
+    const wrap =
+        document.getElementById('viewAttachments');
+
+    wrap.innerHTML = '';
+
+    // Không có ảnh -> ẩn luôn section
+    if (!files.length) {
+        document.getElementById('viewSection').style.display = 'none';
+        return;
+    }
+
+    files.forEach(file => {
+
+        const isImage =
+            file.mime_type &&
+            file.mime_type.startsWith('image/');
+
+        if (isImage) {
+
+            const img = document.createElement('img');
+
+            img.src = `/api/files/${file.file_id}`;
+            img.className = 'thumb';
+
+            img.onclick = () => {
+                openPreview(`/api/files/${file.file_id}`);
+            };
+
+            wrap.appendChild(img);
+
+        } else {
+
+            const a = document.createElement('a');
+
+            a.href = `/api/files/${file.file_id}`;
+            a.target = '_blank';
+            a.className = 'file-link';
+            a.innerText = file.original_filename;
+
+            wrap.appendChild(a);
+        }
+    });
+}
 document.addEventListener('DOMContentLoaded', loadJobInfo);

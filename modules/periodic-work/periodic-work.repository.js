@@ -75,6 +75,28 @@ exports.getJobById = async (jobId, campusId) => {
   return db.query(sql, [jobId, campusId]);
 };
 
+exports.getJobAttachments = async (jobId) => {
+
+    const sql = `
+        SELECT
+            pja.file_id,
+            pja.type,
+
+            f.original_filename,
+            f.mime_type
+
+        FROM periodic_job_attachments pja
+
+        JOIN files f
+            ON f.id = pja.file_id
+
+        WHERE pja.job_id = $1
+
+        ORDER BY pja.id
+    `;
+
+    return db.query(sql, [jobId]);
+};
 // ================= JOB ROOMS =================
 
 exports.getJobRooms = async (jobId) => {
@@ -196,89 +218,125 @@ exports.getDashboardData = async (campusId) => {
  * ============================================
  */
 exports.getJobRoomsTreeRaw = async (jobId, academicYear) => {
-  const sql = `
-    SELECT
-      -- JOB ROOM
-      pjr.id AS job_room_id,
-      pjr.job_id,
-      pjr.room_id,
 
-      -- ROOM
-      r.code AS room_code,
-      -- Ưu tiên lấy tên theo năm học, nếu không có (NULL) thì lấy tên gốc của phòng
-      COALESCE(rny.room_name, r.name) AS room_name,
+    const sql = `
+        SELECT
 
-      -- FLOOR
-      f.id AS floor_id,
-      f.name AS floor_name,
+            -- JOB ROOM
+            pjr.id AS job_room_id,
+            pjr.job_id,
+            pjr.room_id,
 
-      -- BUILDING
-      b.id AS building_id,
-      b.name AS building_name,
+            -- ROOM
+            r.code AS room_code,
+            COALESCE(rny.room_name, r.name) AS room_name,
 
-      -- RESULT (DONE CHECK)
-      CASE 
-        WHEN rrs.id IS NOT NULL THEN true
-        ELSE false
-      END AS is_done
+            -- FLOOR
+            f.id AS floor_id,
+            f.name AS floor_name,
 
-    FROM periodic_job_rooms pjr
+            -- BUILDING
+            b.id AS building_id,
+            b.name AS building_name,
 
-    INNER JOIN rooms r 
-      ON r.id = pjr.room_id
+            -- RESULT
+            rrs.id AS result_id,
+            rrs.note,
+            rrs.room_image_file_id,
+            COALESCE(rrs.error_asset_ids, '[]'::jsonb) AS error_asset_ids,
+            
+            CASE
+                WHEN rrs.id IS NULL THEN false
+                ELSE true
+            END AS is_done
 
-    INNER JOIN floors f 
-      ON f.id = r.floor_id
+        FROM periodic_job_rooms pjr
 
-    INNER JOIN buildings b 
-      ON b.id = r.building_id
+        INNER JOIN rooms r
+            ON r.id = pjr.room_id
 
-    -- JOIN với bảng tên phòng theo năm học
-    LEFT JOIN room_names_by_year rny
-      ON rny.room_id = r.id 
-      AND rny.academic_year = $2
+        INNER JOIN floors f
+            ON f.id = r.floor_id
 
-    -- RESULT TABLE
-    LEFT JOIN periodic_job_room_results rrs
-      ON rrs.job_room_id = pjr.id
+        INNER JOIN buildings b
+            ON b.id = r.building_id
 
-    WHERE pjr.job_id = $1
+        LEFT JOIN room_names_by_year rny
+            ON rny.room_id = r.id
+           AND rny.academic_year = $2
 
-    ORDER BY 
-      b.name ASC,
-      f.name ASC,
-      r.code ASC
-  `;
+        LEFT JOIN periodic_job_room_results rrs
+            ON rrs.job_room_id = pjr.id
 
-  // Truyền cả 2 tham số: $1 là jobId, $2 là academicYear
-  return db.query(sql, [jobId, academicYear]);
+        WHERE pjr.job_id = $1
+
+        ORDER BY
+            b.name,
+            f.name,
+            r.code
+    `;
+
+    return db.query(sql, [jobId, academicYear]);
 };
 /**
  * Insert job room result (DONE ROOM)
  */
 exports.insertJobRoomResult = async ({
-  job_id,
-  job_room_id,
-  room_id,
-  note,
-  room_image_file_id,
-  created_by
-}) => {
-  const sql = `
-    INSERT INTO periodic_job_room_results
-    (job_id, job_room_id, room_id, note, room_image_file_id, created_by)
-    VALUES ($1, $2, $3, $4, $5, $6)
-    RETURNING *;
-  `;
-
-  return db.query(sql, [
     job_id,
     job_room_id,
     room_id,
-    note || null,
-    room_image_file_id || null,
+
+    note,
+
+    room_image_file_id,
+
+    error_asset_ids = [],
+
     created_by
-  ]);
+}) => {
+
+    const sql = `
+        INSERT INTO periodic_job_room_results
+        (
+            job_id,
+            job_room_id,
+            room_id,
+
+            note,
+
+            room_image_file_id,
+
+            error_asset_ids,
+
+            created_by
+        )
+        VALUES
+        (
+            $1,$2,$3,
+            $4,
+            $5,
+            $6,
+            $7
+        )
+    `;
+
+    return db.query(sql, [
+
+        job_id,
+
+        job_room_id,
+
+        room_id,
+
+        note,
+
+        room_image_file_id,
+
+        JSON.stringify(error_asset_ids),
+
+        created_by
+
+    ]);
 };
 
 

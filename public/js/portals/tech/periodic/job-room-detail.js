@@ -5,7 +5,8 @@ let state = {
     selectedRoom: null,
     assets: [],
     repaired: {},
-    openAssetId: null
+    openAssetId: null,
+    readonly: false
 };
 
 let selectedFiles = [];
@@ -57,7 +58,7 @@ async function loadTree() {
     state.buildings = res.data.buildings;
     // ===== JOB =====
     state.job = jobRes.data;
-
+    state.readonly = state.job.status === 'done';
     renderJobTitle();
 
     renderSummary(res.data.summary);
@@ -129,14 +130,17 @@ function renderRoomGrid() {
 
         div.className = 'room ' + statusClass;
         div.innerText = `${r.room_code} - ${r.room_name} ${statusText}`;
-
-        // disable nếu done
-        if (r.status !== 'done') {
+        if (state.readonly) {
             div.onclick = () => selectRoom(r);
-        } else {
-            div.classList.add('disabled');
-        }
 
+        } else {
+             // disable nếu done
+             if (r.status !== 'done') {
+              div.onclick = () => selectRoom(r);
+             } else {
+                 div.classList.add('disabled');
+             }
+        }
         el.appendChild(div);
     });
     // ===== PROGRESS FLOOR =====
@@ -154,31 +158,50 @@ function renderRoomGrid() {
 
 async function selectRoom(room) {
 
-    // 🔒 chặn nếu đã done
-    if (room.status === 'done') {
+    // ===== EDIT MODE =====
+    if (!state.readonly && room.status === 'done') {
         showError('Phòng đã hoàn thành');
         return;
     }
 
-    if (!state.selectedRoom || state.selectedRoom.job_room_id !== room.job_room_id) {
+    if (
+        !state.selectedRoom ||
+        state.selectedRoom.job_room_id !== room.job_room_id
+    ) {
 
         state.openAssetId = null;
         state.assets = [];
         state.repaired = {};
 
         document.getElementById('assetList').innerHTML = '';
+
+        // reset upload preview
+        selectedFiles = [];
+        renderPreview();
     }
+
     document.getElementById('confirmWrap').style.display = 'none';
 
-    // ===== SET ROOM =====
     state.selectedRoom = room;
+
     updateLocation();
 
     document.getElementById('roomDetail').style.display = 'block';
-    document.getElementById('roomTitle').innerText = room.room_code;
 
-    // ===== LOAD ASSET =====
+    document.getElementById('roomTitle').innerText =
+        `${room.room_code} - ${room.room_name}`;
+
+    // reset view
+    document.getElementById('roomImageSection').style.display = '';
+    document.getElementById('roomUploadSection').style.display = '';
+    document.getElementById('roomImageView').style.display = 'none';
+    document.getElementById('roomImageView').innerHTML = '';
+
+    document.getElementById('roomActionSection').style.display = '';
+
     await loadAssets(room.room_id);
+
+    renderReadonlyRoom();
 }
 
 /* ================= ASSET ================= */
@@ -194,20 +217,34 @@ function renderAssets() {
     const el = document.getElementById('assetList');
     el.innerHTML = '';
 
+    const readonlyErrors =
+        state.selectedRoom?.error_asset_ids || [];
+
     state.assets.forEach((a, index) => {
 
         const div = document.createElement('div');
         div.className = 'asset-item';
 
-        if (state.openAssetId === a.id) {
+        // ===== VIEW / EDIT STATUS =====
+        const hasError = state.readonly
+            ? readonlyErrors.includes(a.id)
+            : !!state.repaired[a.id];
+
+        if (state.readonly) {
+            div.classList.add(
+                hasError
+                    ? 'asset-error'
+                    : 'asset-ok'
+            );
+        } else if (state.openAssetId === a.id) {
             div.classList.add('active');
         }
 
-        // ===== LEFT ICON =====
+        // ===== LEFT =====
         const left = document.createElement('span');
         left.className = 'asset-left';
 
-        if (state.repaired[a.id]) {
+        if (hasError) {
             left.innerText = '[!]';
         } else {
             left.innerText = '[ ]';
@@ -218,60 +255,120 @@ function renderAssets() {
         name.className = 'asset-name';
         name.innerText = `${index + 1}. ${a.name}`;
 
-        // ===== RIGHT TEXT =====
+        // ===== RIGHT =====
         const right = document.createElement('span');
         right.className = 'asset-right';
 
-        if (state.repaired[a.id]) {
-            right.innerText = 'Đã báo lỗi >';
+        if (hasError) {
+
+            right.innerText = state.readonly
+                ? 'Đã phát hiện lỗi'
+                : 'Đã báo lỗi >';
+
         } else {
+
             right.innerText = 'Bình thường';
+
         }
 
         div.appendChild(left);
         div.appendChild(name);
         div.appendChild(right);
 
-        div.onclick = () => openRepair(a.id);
+        // ===== CLICK =====
+        if (!state.readonly) {
+            div.onclick = () => openRepair(a.id);
+        }
 
         el.appendChild(div);
 
-        // ===== FORM =====
-        if (state.openAssetId === a.id) {
+        // ===== REPAIR FORM (EDIT MODE ONLY) =====
+        if (!state.readonly && state.openAssetId === a.id) {
 
             const form = document.createElement('div');
             form.className = 'repair-form';
 
-            form.innerHTML = `<div id="formSection">
-        <div class="repair-title"><p>
-          ${state.selectedRoom.room_code} - ${a.name}</p>
-        </div>
-        <div class="form-group">
-            <button type="button" class="qty-btn" onclick="changeValue(-1,'qty-${a.id}')">−</button>
-            <input id="qty-${a.id}" type="number" value="1" class="quantity" readonly>
-            <button type="button" class="qty-btn" onclick="changeValue(1,'qty-${a.id}')">+</button>
-        </div>
-        <div class="form-group">
-            <textarea id="desc-${a.id}" placeholder="Mô tả lỗi"></textarea>
-        </div>
-        </div>   
-        <div class="repair-actions">
-          <div class="upload-box" onclick="triggerUpload('file-${a.id}')">
-            + Thêm ảnh
-          </div>
-          <input type="file" id="file-${a.id}"  accept="image/*" multiple hidden>
-          <div id="preview-${a.id}" class="repair-preview"></div> 
-          <button id="submit-repair-${a.id}" class="btn btn-success" onclick="submitRepair(${a.id})">
-            Lưu thông tin báo lỗi
-          </button>
-        </div>
-      `;
+            form.innerHTML = `
+                <div id="formSection">
+
+                    <div class="repair-title">
+                        <p>${state.selectedRoom.room_code} - ${a.name}</p>
+                    </div>
+
+                    <div class="form-group">
+                        <button
+                            type="button"
+                            class="qty-btn"
+                            onclick="changeValue(-1,'qty-${a.id}')">
+                            −
+                        </button>
+
+                        <input
+                            id="qty-${a.id}"
+                            type="number"
+                            value="1"
+                            class="quantity"
+                            readonly>
+
+                        <button
+                            type="button"
+                            class="qty-btn"
+                            onclick="changeValue(1,'qty-${a.id}')">
+                            +
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea
+                            id="desc-${a.id}"
+                            placeholder="Mô tả lỗi"></textarea>
+                    </div>
+
+                </div>
+
+                <div class="repair-actions">
+
+                    <div
+                        class="upload-box"
+                        onclick="triggerUpload('file-${a.id}')">
+                        + Thêm ảnh
+                    </div>
+
+                    <input
+                        type="file"
+                        id="file-${a.id}"
+                        accept="image/*"
+                        multiple
+                        hidden>
+
+                    <div
+                        id="preview-${a.id}"
+                        class="repair-preview">
+                    </div>
+
+                    <button
+                        id="submit-repair-${a.id}"
+                        class="btn btn-success"
+                        onclick="submitRepair(${a.id})">
+
+                        Lưu thông tin báo lỗi
+
+                    </button>
+
+                </div>
+            `;
 
             el.appendChild(form);
+
             bindRepairFileInput(a.id);
+
             renderRepairPreview(a.id);
+
             setTimeout(() => {
-                form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                form.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
             }, 100);
         }
     });
@@ -280,17 +377,21 @@ function renderAssets() {
 /* ================= REPAIR ================= */
 function openRepair(assetId) {
 
+    // ===== VIEW MODE =====
+    if (state.readonly) {
+        return;
+    }
+
     // 🔒 phòng done
     if (state.selectedRoom.status === 'done') {
         return showError('Phòng đã hoàn thành');
     }
 
-    // 🔒 asset đã báo lỗi → KHÔNG mở lại
+    // 🔒 asset đã báo lỗi
     if (state.repaired[assetId]) {
         return;
     }
 
-    // toggle
     if (state.openAssetId === assetId) {
         state.openAssetId = null;
     } else {
@@ -385,7 +486,10 @@ async function confirmDoneRoom() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            room_image_file_id: fileId
+            room_image_file_id: fileId,
+            error_asset_ids: Object.keys(state.repaired)
+            .filter(assetId => state.repaired[assetId])
+            .map(assetId => Number(assetId))
         })
     });
     if (state.selectedRoom.status !== 'done') {
@@ -669,5 +773,43 @@ async function uploadRepairFiles(assetId) {
         showError('Upload file thất bại');
 
         throw err;
+    }
+}
+
+function renderReadonlyRoom() {
+
+    if (!state.readonly) {
+        return;
+    }
+
+    document.getElementById('roomActionSection').style.display = 'none';
+
+    document.getElementById('roomUploadSection').style.display = 'none';
+
+    const section = document.getElementById('roomImageSection');
+
+    const view = document.getElementById('roomImageView');
+
+    section.style.display = '';
+
+    view.style.display = 'none';
+
+    view.innerHTML = '';
+
+    if (state.selectedRoom.room_image_file_id) {
+
+        view.style.display = '';
+
+        view.innerHTML = `
+            <img
+                class="room-view-image"
+                src="/api/files/${state.selectedRoom.room_image_file_id}"
+                onclick="openPreview('/api/files/${state.selectedRoom.room_image_file_id}')">
+        `;
+
+    } else {
+
+        section.style.display = 'none';
+
     }
 }

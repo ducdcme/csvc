@@ -3,7 +3,7 @@ let previewUrls = [];
 
 let resultFiles = [];
 let resultUrls = [];
-
+let readonly = false;
 /* ================= JOB ================= */
 function getJobIdFromUrl() {
     const parts = window.location.pathname.split('/');
@@ -13,6 +13,7 @@ function getJobIdFromUrl() {
 let requiresResultFile = false;
 
 async function loadJobInfo() {
+
     const jobId = getJobIdFromUrl();
 
     const res = await api(`/user/periodic-work/jobs/${jobId}`);
@@ -22,28 +23,47 @@ async function loadJobInfo() {
     document.getElementById('jobTypeName').innerText = job.type_name;
     document.getElementById('jobDue').innerText = formatDate(job.due_date);
 
-    // 🔥 thêm dòng này
     requiresResultFile = job.requires_result_file;
+
     if (!requiresResultFile) {
         document.getElementById('fileResult').style.display = 'none';
     }
-    // UX hint
+
     if (requiresResultFile) {
+
         document.getElementById('fileResult').style.display = 'block';
-        document.querySelector('#resultPreview').insertAdjacentHTML(
-            'beforebegin',
-            `<div style="color:red;font-size:13px">* Bắt buộc upload tài liệu bảo trì</div>`
-        );
+
+        document.querySelector('#resultPreview')
+            .insertAdjacentHTML(
+                'beforebegin',
+                `<div style="color:red;font-size:13px">
+                    * Bắt buộc upload tài liệu bảo trì
+                 </div>`
+            );
     }
+
+    // ===== VIEW MODE =====
     if (job.status === 'done') {
 
-        const btn = document.getElementById('submitBtn');
+        readonly = true;
 
-        btn.disabled = true;
-        btn.innerText = 'Đã hoàn thành';
-        btn.dataset.done = 'true';
+        document.getElementById('jobStatusBadge').style.display = '';
 
-        showError('Công việc này đã hoàn thành');
+        document.getElementById('submitBtn').style.display = 'none';
+
+        document.querySelector('.upload-box').parentElement.style.display = 'none';
+
+        document.getElementById('fileResult').style.display = 'none';
+
+        document.getElementById('viewSection').style.display = '';
+
+        document.getElementById('noteWrap').style.display = 'block';
+        document.getElementById('noteBtn').style.display = 'none';
+
+        document.getElementById('note').value = job.note || '';
+        document.getElementById('note').disabled = true;
+
+        renderReadonlyFiles(job);
 
         return;
     }
@@ -259,5 +279,85 @@ async function submitMaintenance() {
         }
 
     }
+}
+function renderReadonlyFiles(job) {
+
+    const attachmentWrap =document.getElementById('viewAttachments');
+
+    const resultWrap =document.getElementById('viewResultFiles');
+
+    const resultSection =document.getElementById('resultFileSection');
+
+    const attachmentSection =document.getElementById('attachmentSection');
+
+    const noteSection =document.getElementById('noteSection');
+
+    // Ẩn luôn section ghi chú nếu không có ghi chú
+    if (!job.note || job.note.trim() === '') {
+        noteSection.style.display = 'none';
+    }
+
+    attachmentWrap.innerHTML = '';
+    resultWrap.innerHTML = '';
+
+     // ===== ẢNH HIỆN TRƯỜNG =====
+    (job.attachments || []).forEach(file => {
+
+        const isImage =
+            file.mime_type &&
+            file.mime_type.startsWith('image/');
+
+        if (isImage) {
+
+            const img = document.createElement('img');
+
+            img.src = `/api/files/${file.file_id}`;
+            img.className = 'thumb';
+
+            img.onclick = () =>openPreview(img.src);
+            
+
+            attachmentWrap.appendChild(img);
+
+        } else {
+
+            const a = document.createElement('a');
+
+            a.href = `/api/files/${file.file_id}`;
+            a.target = '_blank';
+            a.className = 'file-link';
+            a.innerText =
+                file.original_filename ||
+                `File #${file.file_id}`;
+
+            attachmentWrap.appendChild(a);
+        }
+    });
+
+    // ===== FILE KẾT QUẢ =====
+    if (!job.result_files ||
+        job.result_files.length === 0) {
+
+        resultSection.style.display = 'none';
+        return;
+    }
+
+    resultSection.style.display = '';
+
+    job.result_files.forEach(file => {
+
+        const a = document.createElement('a');
+
+        a.href = `/api/files/${file.file_id}`;
+        a.target = '_blank';
+
+        a.className = 'file-link';
+
+        a.innerText =
+            file.original_filename ||
+            `File #${file.file_id}`;
+
+        resultWrap.appendChild(a);
+    });
 }
 document.addEventListener('DOMContentLoaded', loadJobInfo);

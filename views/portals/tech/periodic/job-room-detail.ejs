@@ -27,29 +27,47 @@
 
         <h6 id="roomTitle"></h6>
 
-        <!-- upload ảnh -->
         <!-- ===== ROOM IMAGE ===== -->
-        <div class="card p-2 mb-2">
+        <div id="roomImageSection" class="card p-2 mb-2">
+
             <h6>Ảnh tổng thể phòng</h6>
 
-            <div class="upload-box" onclick="triggerUpload('roomImageInput')">
-                📷 Chụp ảnh checkin phòng
+            <!-- EDIT MODE -->
+            <div id="roomUploadSection">
+
+                <div class="upload-box" onclick="triggerUpload('roomImageInput')">
+                    📷 Chụp ảnh checkin phòng
+                </div>
+
+                <input type="file" id="roomImageInput" accept="image/*" hidden>
+
+                <div id="preview"></div>
+
             </div>
 
-            <input type="file" id="roomImageInput" accept="image/*" hidden>
-        </div>
-        <div id="preview"></div>
+            <!-- VIEW MODE -->
+            <div id="roomImageView" style="display:none"></div>
 
+        </div>
+
+         <!-- ===== ASSET ===== -->
         <div id="assetList"></div>
 
-        <button class="btn btn-primary mt-2" onclick="showConfirm()">
-            Hoàn thành phòng
-        </button>
+        <!-- ===== ACTION ===== -->
+        <div id="roomActionSection">
 
-        <div id="confirmWrap" style="display:none;margin-top:10px;">
-            <div class="text-danger">Xác nhận đã kiểm tra xong phòng?</div>
-            <button class="btn btn-success" onclick="confirmDoneRoom()">Xác nhận</button>
-            <button class="btn btn-secondary" onclick="cancelConfirm()">Hủy</button>
+            <button class="btn btn-primary mt-2" onclick="showConfirm()">Hoàn thành phòng</button>
+
+            <div id="confirmWrap" style="display:none;margin-top:10px;">
+
+                <div class="text-danger">Xác nhận đã kiểm tra xong phòng?</div>
+
+                <button class="btn btn-success" onclick="confirmDoneRoom()">Xác nhận</button>
+
+                <button class="btn btn-secondary" onclick="cancelConfirm()">Hủy</button>
+
+            </div>
+
         </div>
 
     </div>
@@ -197,6 +215,25 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+    .asset-item.asset-ok{
+        border-left:4px solid #198754;
+    }
+
+    .asset-item.asset-error{
+        border-left:4px solid #dc3545;
+        background:#fff5f5;
+    }
+    .room-view-image{
+
+        width:140px;
+
+        border-radius:8px;
+
+        cursor:pointer;
+
+        border:1px solid #ddd;
+
     }
 </style>
 
