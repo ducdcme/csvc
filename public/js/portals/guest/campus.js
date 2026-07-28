@@ -69,7 +69,7 @@ async function selectCampus(btn, campus, container) {
 
         // delay nhẹ cho mượt UX
         setTimeout(() => {
-            window.location.href = '/guest/repair'
+            window.location.href = '/guest/login'
         }, 400)
 
     } catch (err) {

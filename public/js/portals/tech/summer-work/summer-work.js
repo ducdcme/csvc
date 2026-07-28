@@ -450,7 +450,7 @@ function renderMobileSection(
 
 function renderStatus(status) {
 
-    if (status === 'done') {
+    if (status === 'done' || status === 'CLOSED') {
 
         return `
             <span class="badge badge-success">
@@ -479,7 +479,15 @@ function renderStatus(status) {
         `
 
     }
+     if (status === 'REVIEWING') {
 
+        return `
+            <span class="badge badge-warning">
+                REVIEWING
+            </span>
+        `
+
+    }
     return `
         <span class="badge badge-secondary">
             PENDING
