@@ -3,7 +3,7 @@ function getCurrentAcademicYear() {
     const year = now.getFullYear();
     const month = now.getMonth() + 1;
 
-    if (month >= 9) {
+    if (month >= 8) {
         return `${year}-${year + 1}`;
     } else {
         return `${year - 1}-${year}`;
